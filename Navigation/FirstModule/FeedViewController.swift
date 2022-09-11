@@ -9,9 +9,6 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
-        
-      
-        
     var post = Post(title: "Post")
     
     override func viewDidLoad() {
@@ -19,9 +16,7 @@ class FeedViewController: UIViewController {
         view.backgroundColor = .systemBlue
         button1()
         lable2()
-        
     }
-    
     
     func lable2(){
         let myLable1 = UILabel()
@@ -32,31 +27,25 @@ class FeedViewController: UIViewController {
         myLable1.font = UIFont.boldSystemFont(ofSize: 15)
         view.addSubview(myLable1)
     }
-        
-        
-           func button1(){
-               var button = UIButton()
-               button = UIButton(type: .roundedRect)
-               let fr = CGRect(x: 126, y: 680, width: 150, height: 50)
-               button.frame = fr
-            button.setTitle("Show Alert", for: .normal)
-            button.setTitleColor(UIColor.black, for: .normal)
-               button.backgroundColor = .white
-            button.layer.cornerRadius = 14
-               button.addTarget(self, action: #selector(showDetailController), for: .touchDown)
-               self.view.addSubview(button)
-
-        }
-        
-        
-        
-        
-    @objc func showDetailController() {
-            let exampleViewController = PostViewController()
-            navigationController?.pushViewController(exampleViewController, animated: true)
     
-        }
+    func button1(){
+        var button = UIButton()
+        button = UIButton(type: .roundedRect)
+        let fr = CGRect(x: 126, y: 680, width: 150, height: 50)
+        button.frame = fr
+        button.setTitle("Show Alert", for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 14
+        button.addTarget(self, action: #selector(showDetailController), for: .touchDown)
+        self.view.addSubview(button)
         
     }
+    
+    @objc func showDetailController() {
+        let exampleViewController = PostViewController()
+        navigationController?.pushViewController(exampleViewController, animated: true)
+    }
+}
     
 

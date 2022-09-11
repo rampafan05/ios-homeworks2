@@ -54,7 +54,8 @@ class InfoView: UIViewController {
     @objc func addtarget(){
         let alert = UIAlertController(title: "Внимание", message: "Вы точно этого хотите?", preferredStyle: .alert)
         
-        let ok = UIAlertAction(title: "Да", style: .default, handler: nil)
+        let ok = UIAlertAction(title: "Да", style: .default, handler: { _ in
+            print("Отлично!")})
         alert.addAction(ok)
         let no = UIAlertAction(title: "Нет", style: .destructive, handler: nil)
         alert.addAction(no)
