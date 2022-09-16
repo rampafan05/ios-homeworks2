@@ -13,7 +13,7 @@ class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBlue
+        view.backgroundColor = .lightGray
         button1()
         lable2()
     }
@@ -31,8 +31,8 @@ class FeedViewController: UIViewController {
     func button1(){
         var button = UIButton()
         button = UIButton(type: .roundedRect)
-        let fr = CGRect(x: 126, y: 680, width: 150, height: 50)
-        button.frame = fr
+        let frame = CGRect(x: 126, y: 680, width: 150, height: 50)
+        button.frame = frame
         button.setTitle("Show Alert", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = .white

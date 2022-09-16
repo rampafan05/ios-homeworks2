@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA39DF1F28CF118200D80865 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39DF1E28CF118200D80865 /* ProfileHeaderView.swift */; };
 		FA74BFEA28CBAC0500E76DC3 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA74BFE928CBAC0500E76DC3 /* InfoViewController.swift */; };
 		FAA25B1C28BFAA7200017E1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25B1B28BFAA7200017E1B /* AppDelegate.swift */; };
 		FAA25B1E28BFAA7200017E1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25B1D28BFAA7200017E1B /* SceneDelegate.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA39DF1E28CF118200D80865 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		FA74BFE928CBAC0500E76DC3 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		FAA25B1828BFAA7200017E1B /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA25B1B28BFAA7200017E1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -28,7 +30,7 @@
 		FAA25B2928BFAA7600017E1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAA25B3328BFB3EA00017E1B /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		FAA25B3828BFB4FA00017E1B /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		FAA25B3B28BFB53800017E1B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		FAA25B3B28BFB53800017E1B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../SecondModule/ProfileViewController.swift; sourceTree = "<group>"; };
 		FAA25B3D28C09B5500017E1B /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -43,6 +45,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA39DF1D28CF112600D80865 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				FA39DF1E28CF118200D80865 /* ProfileHeaderView.swift */,
+				FAA25B3B28BFB53800017E1B /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		FAA25B0F28BFAA7200017E1B = {
 			isa = PBXGroup;
 			children = (
@@ -65,7 +76,7 @@
 				FAA25B2F28BFB20400017E1B /* Application */,
 				FAA25B3228BFB31100017E1B /* DetailModule */,
 				FAA25B3528BFB45400017E1B /* FirstModule */,
-				FAA25B3A28BFB50600017E1B /* SecondModule */,
+				FA39DF1D28CF112600D80865 /* Profile */,
 				FAA25B2428BFAA7600017E1B /* Assets.xcassets */,
 				FAA25B2628BFAA7600017E1B /* LaunchScreen.storyboard */,
 				FAA25B2928BFAA7600017E1B /* Info.plist */,
@@ -98,14 +109,6 @@
 				FAA25B3D28C09B5500017E1B /* FeedViewController.swift */,
 			);
 			path = FirstModule;
-			sourceTree = "<group>";
-		};
-		FAA25B3A28BFB50600017E1B /* SecondModule */ = {
-			isa = PBXGroup;
-			children = (
-				FAA25B3B28BFB53800017E1B /* ProfileViewController.swift */,
-			);
-			path = SecondModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +188,7 @@
 				FAA25B1C28BFAA7200017E1B /* AppDelegate.swift in Sources */,
 				FAA25B1E28BFAA7200017E1B /* SceneDelegate.swift in Sources */,
 				FA74BFEA28CBAC0500E76DC3 /* InfoViewController.swift in Sources */,
+				FA39DF1F28CF118200D80865 /* ProfileHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
