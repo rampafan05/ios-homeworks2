@@ -20,64 +20,156 @@ class ProfileHeaderView: UIView {
         return lableProfile1
     }()
     
-    let  labelName: UILabel = {
+    let  fullNameLabel: UILabel = {
         let labelName = UILabel()
-        let labelframe = CGRect(x: 165, y: 47, width: 200, height: 100)
-        labelName.frame = labelframe
         labelName.text = "Рыжик Пыжик"
         labelName.numberOfLines = 3
         labelName.font = UIFont.boldSystemFont(ofSize: 18)
         labelName.textColor = UIColor.black
+        labelName.translatesAutoresizingMaskIntoConstraints = false
         
         return labelName
     }()
     
-    let labelWhaiting: UILabel = {
+    let statusLable: UILabel = {
         let labeleWhaiting = UILabel()
-        let labelframe = CGRect(x: 165, y: 100, width: 300, height: 100)
-        labeleWhaiting.frame = labelframe
         labeleWhaiting.text = "Whaiting for something..."
         labeleWhaiting.textColor = UIColor.gray
         labeleWhaiting.numberOfLines = 3
         labeleWhaiting.font = UIFont.boldSystemFont(ofSize: 15)
+        labeleWhaiting.translatesAutoresizingMaskIntoConstraints = false
         
         return labeleWhaiting
     }()
     
-    let  catUIImageView: UIImageView = {
+    let  avatarImageView: UIImageView = {
         var catFoto = UIImageView()
         let image = UIImage(named: "kot")
         catFoto.contentMode = .scaleAspectFit
-        catFoto.frame = CGRect(x: 15.0, y: 70.0, width: 120.0, height: 120.0)
         catFoto.tintColor = .lightGray
         catFoto.backgroundColor = .clear
         catFoto.image = image
-        catFoto.layer.cornerRadius = catFoto.bounds.height / 2
+        catFoto.frame.size.width = 120
+        catFoto.frame.size.height = 120
+        catFoto.layer.cornerRadius = catFoto.frame.size.width / 2
         catFoto.clipsToBounds = true
         catFoto.layer.borderColor = UIColor.white.cgColor
         catFoto.layer.borderWidth = 6
+        catFoto.translatesAutoresizingMaskIntoConstraints = false
         
         return catFoto
     }()
     
-    let  buttonSetStatus: UIButton = {
+    let newButton: UIButton = {
+        let newButton = UIButton()
+        newButton.backgroundColor = .systemBlue
+        newButton.setTitle("New Button", for: .normal)
+        newButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        return newButton
+    }()
+    
+    let  setButtonSetStatus: UIButton = {
         var button = UIButton()
         button = UIButton(type: .roundedRect)
-        let frame = CGRect(x: 15, y: 250, width: 360, height: 50)
-        button.frame = frame
         button.setTitle("Set status", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 14
         button.backgroundColor = UIColor.systemBlue
         button.layer.shadowRadius = 6
+        button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
     }()
     
+    private var statusTextT: String = ""
+    
+    let statusTextField: UITextField = {
+        let textField = UITextField()
+        textField.borderStyle = .roundedRect
+        textField.textAlignment = .center
+        textField.placeholder = "Статус"
+        textField.layer.borderColor = UIColor.black.cgColor
+        textField.layer.borderWidth = 2
+        textField.layer.cornerRadius = 6
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        return textField
+    }()
+    
+    override init(frame: CGRect){
+        super.init(frame: frame)
+        translatesAutoresizingMaskIntoConstraints = false
+        layout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func addTarget() {
+        statusTextField.addTarget(self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
+        statusTextField.isUserInteractionEnabled = true
+    }
+    
     func addTapGesture() {
-        buttonSetStatus.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        buttonSetStatus.isUserInteractionEnabled = true
+        setButtonSetStatus.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        setButtonSetStatus.isUserInteractionEnabled = true
+    }
+    
+    
+    func layout() {
+        self.addSubview(newButton)
+        self.addSubview(fullNameLabel)
+        self.addSubview(statusLable)
+        self.addSubview(avatarImageView)
+        self.addSubview(setButtonSetStatus)
+        self.addSubview(statusTextField)
+        addTarget()
+        addTapGesture()
+        
+        NSLayoutConstraint.activate([
+            fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: -55),
+            fullNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 163),
+            fullNameLabel.heightAnchor.constraint(equalToConstant: 120.0),
+            fullNameLabel.widthAnchor.constraint(equalToConstant: 150.0)
+        ])
+        
+        NSLayoutConstraint.activate([
+            statusLable.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
+            statusLable.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 165),
+            statusLable.heightAnchor.constraint(equalToConstant: 100),
+            statusLable.widthAnchor.constraint(equalToConstant: 300)
+        ])
+        
+        NSLayoutConstraint.activate([
+            avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: -15),
+            avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8.0),
+            avatarImageView.heightAnchor.constraint(equalToConstant: 120),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 120),
+        ])
+        
+        NSLayoutConstraint.activate([
+            setButtonSetStatus.topAnchor.constraint(equalTo: self.topAnchor, constant: 120),
+            setButtonSetStatus.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+            setButtonSetStatus.heightAnchor.constraint(equalToConstant: 50),
+            setButtonSetStatus.widthAnchor.constraint(equalToConstant: 360)
+        ])
+        
+        NSLayoutConstraint.activate([
+            statusTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: 70),
+            statusTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 164),
+            statusTextField.heightAnchor.constraint(equalToConstant: 42),
+            statusTextField.widthAnchor.constraint(equalToConstant: 209)
+        ])
+        
+        NSLayoutConstraint.activate([
+            newButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            newButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            newButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
+        ])
+        
     }
     
     @objc
@@ -85,34 +177,8 @@ class ProfileHeaderView: UIView {
         print(statusTextT)
     }
     
-    
-    
-    
-    // ДОПОЛНИТЕЛЬНОЕ ЗАДАНИЕ
-    private var statusTextT: String = ""
-    
-    let textField: UITextField = {
-        let textField = UITextField()
-        textField.frame = CGRect(x: 164, y: 180, width: 209, height: 42)
-        textField.contentVerticalAlignment = .center
-        textField.borderStyle = .roundedRect
-        textField.textAlignment = .center
-        textField.placeholder = "Статус"
-        textField.layer.borderColor = UIColor.black.cgColor
-        textField.layer.borderWidth = 2
-        textField.layer.cornerRadius = 6
-        
-        return textField
-    }()
-    
-    
-    func addTarget() {
-        textField.addTarget(self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
-        textField.isUserInteractionEnabled = true
-    }
-    
-    
     @objc func statusTextChanged(_ textField: UITextField){
         statusTextT = textField.text ?? ""
     }
+    
 }
