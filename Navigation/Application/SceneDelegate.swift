@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
         
         feedViewController = UINavigationController.init(rootViewController: FeedViewController())
-        profileViewController = UINavigationController.init(rootViewController: ProfileViewController())
+        profileViewController = UINavigationController.init(rootViewController: LoginViewController())
         
        
         let item1 = UITabBarItem(title: "Feed", image: UIImage(systemName: "folder.fill.badge.person.crop"), tag: 0)
@@ -42,11 +42,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         tabBarController.viewControllers = [feedViewController,profileViewController]
         
-        
-        let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = tabBarController
-        window.makeKeyAndVisible()
-        self.window = window
+        self.window = UIWindow(windowScene: windowScene)
+//        let window = UIWindow(windowScene: windowScene)
+        self.window?.rootViewController = tabBarController
+        self.window?.makeKeyAndVisible()
+//        self.window = window
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

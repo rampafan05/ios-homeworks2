@@ -11,11 +11,10 @@ class ProfileHeaderView: UIView {
     
     let lableProfile1: UILabel = {
         let lableProfile1 = UILabel()
-        let labelframe = CGRect(x: 173, y: 1, width: 100, height: 100)
-        lableProfile1.frame = labelframe
         lableProfile1.text = "Profile"
         lableProfile1.numberOfLines = 1
         lableProfile1.font = UIFont.boldSystemFont(ofSize: 15)
+        lableProfile1.translatesAutoresizingMaskIntoConstraints = false
         
         return lableProfile1
     }()
@@ -60,14 +59,7 @@ class ProfileHeaderView: UIView {
         return catFoto
     }()
     
-    let newButton: UIButton = {
-        let newButton = UIButton()
-        newButton.backgroundColor = .systemBlue
-        newButton.setTitle("New Button", for: .normal)
-        newButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        return newButton
-    }()
+   
     
     let  setButtonSetStatus: UIButton = {
         var button = UIButton()
@@ -119,55 +111,62 @@ class ProfileHeaderView: UIView {
     }
     
     
+    
+    
+    
+    
+    
+    
     func layout() {
-        self.addSubview(newButton)
         self.addSubview(fullNameLabel)
         self.addSubview(statusLable)
         self.addSubview(avatarImageView)
         self.addSubview(setButtonSetStatus)
         self.addSubview(statusTextField)
+        self.addSubview(lableProfile1)
         addTarget()
         addTapGesture()
         
         NSLayoutConstraint.activate([
-            fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: -55),
+            fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: -5),
             fullNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 163),
             fullNameLabel.heightAnchor.constraint(equalToConstant: 120.0),
-            fullNameLabel.widthAnchor.constraint(equalToConstant: 150.0)
-        ])
+            fullNameLabel.widthAnchor.constraint(equalToConstant: 150.0),
         
-        NSLayoutConstraint.activate([
-            statusLable.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
+        
+    
+            statusLable.topAnchor.constraint(equalTo: self.topAnchor, constant: 50),
             statusLable.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 165),
             statusLable.heightAnchor.constraint(equalToConstant: 100),
-            statusLable.widthAnchor.constraint(equalToConstant: 300)
-        ])
+            statusLable.widthAnchor.constraint(equalToConstant: 300),
         
-        NSLayoutConstraint.activate([
-            avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: -15),
-            avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8.0),
+        
+        
+            avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 30),
+            avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             avatarImageView.heightAnchor.constraint(equalToConstant: 120),
             avatarImageView.widthAnchor.constraint(equalToConstant: 120),
-        ])
         
-        NSLayoutConstraint.activate([
-            setButtonSetStatus.topAnchor.constraint(equalTo: self.topAnchor, constant: 120),
+        
+        
+            setButtonSetStatus.topAnchor.constraint(equalTo: self.topAnchor, constant: 180),
             setButtonSetStatus.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+            setButtonSetStatus.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             setButtonSetStatus.heightAnchor.constraint(equalToConstant: 50),
-            setButtonSetStatus.widthAnchor.constraint(equalToConstant: 360)
-        ])
+            setButtonSetStatus.widthAnchor.constraint(equalToConstant: 360),
         
-        NSLayoutConstraint.activate([
-            statusTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: 70),
+        
+            statusTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: 120),
             statusTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 164),
+            statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             statusTextField.heightAnchor.constraint(equalToConstant: 42),
-            statusTextField.widthAnchor.constraint(equalToConstant: 209)
-        ])
-        
-        NSLayoutConstraint.activate([
-            newButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            newButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-            newButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
+            statusTextField.widthAnchor.constraint(equalToConstant: 209),
+            
+            
+            lableProfile1.topAnchor.constraint(equalTo: self.topAnchor, constant: -50),
+            lableProfile1.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 173),
+            lableProfile1.widthAnchor.constraint(equalToConstant: 100),
+            lableProfile1.heightAnchor.constraint(equalToConstant: 100)
         ])
         
     }

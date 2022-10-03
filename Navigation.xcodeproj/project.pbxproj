@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA255A2328E436F900AB7AD9 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA255A2228E436F900AB7AD9 /* LogInViewController.swift */; };
 		FA39DF1F28CF118200D80865 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39DF1E28CF118200D80865 /* ProfileHeaderView.swift */; };
 		FA74BFEA28CBAC0500E76DC3 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA74BFE928CBAC0500E76DC3 /* InfoViewController.swift */; };
 		FAA25B1C28BFAA7200017E1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25B1B28BFAA7200017E1B /* AppDelegate.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA255A2228E436F900AB7AD9 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		FA39DF1E28CF118200D80865 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		FA74BFE928CBAC0500E76DC3 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		FAA25B1828BFAA7200017E1B /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +52,7 @@
 			children = (
 				FA39DF1E28CF118200D80865 /* ProfileHeaderView.swift */,
 				FAA25B3B28BFB53800017E1B /* ProfileViewController.swift */,
+				FA255A2228E436F900AB7AD9 /* LogInViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 			files = (
 				FAA25B3C28BFB53800017E1B /* ProfileViewController.swift in Sources */,
 				FAA25B3928BFB4FA00017E1B /* Post.swift in Sources */,
+				FA255A2328E436F900AB7AD9 /* LogInViewController.swift in Sources */,
 				FAA25B3E28C09B5500017E1B /* FeedViewController.swift in Sources */,
 				FAA25B3428BFB3EA00017E1B /* PostViewController.swift in Sources */,
 				FAA25B1C28BFAA7200017E1B /* AppDelegate.swift in Sources */,
