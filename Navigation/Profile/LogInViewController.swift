@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
         var textField = UITextField()
         textField.borderStyle = .roundedRect
         textField.placeholder = "Email of phone"
-        textField.backgroundColor = .lightGray
+        textField.backgroundColor = .systemGray6
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
         textField.layer.cornerRadius = 10
@@ -62,7 +62,7 @@ class LoginViewController: UIViewController {
         var textField = UITextField()
         textField.borderStyle = .roundedRect
         textField.placeholder = "Password"
-        textField.backgroundColor = .lightGray
+        textField.backgroundColor = .systemGray6
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
         textField.layer.cornerRadius = 10
@@ -102,23 +102,29 @@ class LoginViewController: UIViewController {
         self.stackView.addArrangedSubview(self.login)
         self.stackView.addArrangedSubview(self.password)
         self.stackView.addArrangedSubview(self.buttonLogIn)
-        let scrollViewConstraints = self.scrollViewConstraints()
-        let stackViewConstraints = self.stackViewConstraints()
-        NSLayoutConstraint.activate(
-            scrollViewConstraints +
-            stackViewConstraints
-        )
+       self.stackView.setCustomSpacing(16.0, after: self.password)
 
         NSLayoutConstraint.activate([
 
             iconVK.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
-            iconVK.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 150),
-            iconVK.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -150),
+            iconVK.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 155),
+            iconVK.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -155),
             iconVK.widthAnchor.constraint(equalToConstant: 100),
             iconVK.heightAnchor.constraint(equalToConstant: 100),
+            
+            
+            stackView.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 330),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            stackView.heightAnchor.constraint(equalToConstant: 180),
+            
+            
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
         ])
-
     }
 
     override func viewDidLoad() {
@@ -145,28 +151,6 @@ class LoginViewController: UIViewController {
                                                object: nil)
     }
 
-    private func scrollViewConstraints() -> [NSLayoutConstraint] {
-        let topAnchor = self.scrollView.topAnchor.constraint(equalTo: self.view.topAnchor)
-        let leadingAnchor = self.scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
-        let trailingAnchor = self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
-        let bottomAnchor = self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-
-        return [
-            topAnchor, leadingAnchor, trailingAnchor, bottomAnchor
-        ]
-    }
-
-    private func stackViewConstraints() -> [NSLayoutConstraint] {
-        let centerYConstraint = self.stackView.centerYAnchor.constraint(equalTo: self.scrollView.centerYAnchor)
-        let leadingConstraint = self.stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16)
-        let trailingConstraint = self.stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
-        let heightConstraint = self.stackView.heightAnchor.constraint(equalToConstant: 180)
-
-        return [
-            centerYConstraint, leadingConstraint, trailingConstraint, heightConstraint
-        ]
-    }
-
     @objc private func didShowKeyboard(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
@@ -178,8 +162,6 @@ class LoginViewController: UIViewController {
             let yOffset = keyboardOriginY < loginButtonBottomPointY
             ? loginButtonBottomPointY - keyboardOriginY + 16
             : 0
-
-//            print("🍋 \(self.stackView.frame.origin.y), \(self.login.frame.origin.y), \(self.buttonLogIn.frame.origin.y)")
 
             self.scrollView.contentOffset = CGPoint(x: 0, y: yOffset)
         }
