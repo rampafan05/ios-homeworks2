@@ -46,15 +46,6 @@ class FeedViewController: UIViewController {
         return button2
     }()
     
-    func lable2(){
-        let myLable1 = UILabel()
-        let labelframe = CGRect(x: 165, y: 10, width: 100, height: 100)
-        myLable1.frame = labelframe
-        myLable1.numberOfLines = 3
-        myLable1.text = "First text"
-        myLable1.font = UIFont.boldSystemFont(ofSize: 15)
-        view.addSubview(myLable1)
-    }
     
     func constraints() {
         view.addSubview(stackView)
@@ -71,8 +62,8 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
-        lable2()
         constraints()
+        title = "First Text"
     }
     
     @objc func showDetailController() {

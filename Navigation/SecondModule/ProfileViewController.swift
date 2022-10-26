@@ -9,29 +9,46 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    var profileHeaderView = ProfileHeaderView()
-    
     private lazy var tableView: UITableView = {
+        
         var tableView = UITableView(frame: .zero, style: .grouped)
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .white
+        tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "ProfileHeaderView")
         tableView.register(UITableViewCell.self, forCellReuseIdentifier:"DefaultCell")
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier:"PostTableViewCell")
-        tableView.rowHeight = 600
+        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier:"PhotosCell")
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 600
         
         return tableView
     }()
     
+    private lazy var layuot: UICollectionViewFlowLayout = {
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 20
+        
+        return layout
+    }()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
         headerLayot()
+        title = "Profile"
+        // MARK: NAVIGATION BAR
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.prefersLargeTitles = false
         print(#function)
     }
-    //
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
@@ -39,60 +56,92 @@ class ProfileViewController: UIViewController {
     }
     
     func headerLayot() {
-        view.addSubview(profileHeaderView)
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            profileHeaderView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant:280),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
         ])
     }
     
     
 }
-
 extension ProfileViewController: UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        1
+    func numberOfSections(in tableView: UITableView) -> Int{
+        return  2
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-               return posts.count
+        if section == 0{
+            return 1
+        }
+        if section == 1{
+            return posts.count
+        }
+        return 0
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as! PostTableViewCell
-                cell.setConfigureOfCell(post: posts[indexPath.row])
-        return cell
+        if indexPath.section == 0 {
+            
+            let cell0 = tableView.dequeueReusableCell(withIdentifier: "PhotosCell", for: indexPath) as! PhotosTableViewCell
+            
+            return cell0
+        }
         
+        let cell1 = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as! PostTableViewCell
+        cell1.setConfigureOfCell(post: posts[indexPath.row])
         
+        return cell1
     }
+    
+    
+    
+    
     
 }
 
-//extension ProfileViewController: UITableViewDelegate {
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//    }
-//
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        if section == 0 {
-//            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileHeaderView.identifire) as! ProfileHeaderView
-//            return headerView
-//        } else { return nil }
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 220
-//    }
-//}
+extension ProfileViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        // MARK: Переход на Альбом
+        let exampleViewController =  PhotosViewController()
+        // MARK: NAVIGATION BAR
+        navigationController?.pushViewController(exampleViewController, animated: true)
+        navigationController?.navigationBar.isHidden = false
+      
+        
+    }
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView") as! ProfileHeaderView
+            headerView.contentView.backgroundColor = .systemGray6
+            return headerView
+        } else { return nil }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 230
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 150
+        }
+        return UITableView.automaticDimension
+    }
+}
+

@@ -8,8 +8,6 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
-//    static let identifire = "PostTableViewCell"
-    
     // MARK: Author
     
     private lazy var author: UILabel = {
@@ -70,7 +68,7 @@ class PostTableViewCell: UITableViewCell {
     // MARK: Constraints
     private func setupConstraints(){
         contentView.addSubview(postLikesCounter)
-              contentView.addSubview(postViewsCounter)
+        contentView.addSubview(postViewsCounter)
         contentView.addSubview(author)
         contentView.addSubview(postImage)
         contentView.addSubview(postDescription)
@@ -91,15 +89,15 @@ class PostTableViewCell: UITableViewCell {
             postImage.heightAnchor.constraint(equalTo: postImage.widthAnchor),
 
             
-            postDescription.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: -16),
+            postDescription.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 16),
             postDescription.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             postDescription.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             
-            postLikesCounter.topAnchor.constraint(equalTo: postDescription.bottomAnchor, constant: -16),
+            postLikesCounter.topAnchor.constraint(equalTo: postDescription.bottomAnchor, constant: 16),
             postLikesCounter.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             postLikesCounter.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
 
-            postViewsCounter.topAnchor.constraint(equalTo: postDescription.bottomAnchor, constant: -16),
+            postViewsCounter.topAnchor.constraint(equalTo: postDescription.bottomAnchor, constant: 16),
             postViewsCounter.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             postViewsCounter.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
         ])

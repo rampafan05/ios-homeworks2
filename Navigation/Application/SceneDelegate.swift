@@ -13,7 +13,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var feedViewController : UINavigationController!
     var profileViewController : UINavigationController!
-    
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -22,6 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
     
+        
+        
+        
         
         feedViewController = UINavigationController.init(rootViewController: FeedViewController())
         profileViewController = UINavigationController.init(rootViewController: LoginViewController())
@@ -44,7 +46,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = UIWindow(windowScene: windowScene)
 //        let window = UIWindow(windowScene: windowScene)
-        self.window?.rootViewController = tabBarController
+        self.window?.rootViewController =  tabBarController
+        
         self.window?.makeKeyAndVisible()
 //        self.window = window
     }
