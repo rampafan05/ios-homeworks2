@@ -44,6 +44,7 @@ class ProfileViewController: UIViewController {
         title = "Profile"
         // MARK: NAVIGATION BAR
         navigationController?.navigationBar.isHidden = false
+        navigationItem.hidesBackButton = true
         navigationController?.navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.prefersLargeTitles = false
         print(#function)
@@ -116,9 +117,6 @@ extension ProfileViewController: UITableViewDelegate {
         let exampleViewController =  PhotosViewController()
         // MARK: NAVIGATION BAR
         navigationController?.pushViewController(exampleViewController, animated: true)
-        navigationController?.navigationBar.isHidden = false
-      
-        
     }
     
     

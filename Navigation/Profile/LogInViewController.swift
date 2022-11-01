@@ -101,6 +101,7 @@ class LoginViewController: UIViewController {
         self.scrollView.addSubview(self.stackView)
         self.stackView.addArrangedSubview(self.login)
         self.stackView.addArrangedSubview(self.password)
+      
         
         NSLayoutConstraint.activate([
      
@@ -121,7 +122,7 @@ class LoginViewController: UIViewController {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             
-            buttonLogIn.topAnchor.constraint(equalTo: self.stackView.topAnchor, constant: 116),
+            buttonLogIn.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 16),
             buttonLogIn.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             buttonLogIn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             buttonLogIn.heightAnchor.constraint(equalToConstant: 50),
@@ -133,8 +134,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         // MARK: NAVIGATION BAR
-        navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.isHidden = true
         layotLogin()
     }
     
@@ -161,11 +161,11 @@ class LoginViewController: UIViewController {
             let keyboardHeight = keyboardRectangle.height
             
             let loginButtonBottomPointY = self.stackView.frame.origin.y +
-            self.password.frame.origin.y + self.password.frame.height
+            self.password.frame.origin.y + self.password.frame.height + self.buttonLogIn.frame.height
             
             let keyboardOriginY = self.view.frame.height - keyboardHeight
             let yOffset = keyboardOriginY < loginButtonBottomPointY
-            ? loginButtonBottomPointY - keyboardOriginY + 78
+            ? loginButtonBottomPointY - keyboardOriginY + 32
             : 0
             
             self.scrollView.contentOffset = CGPoint(x: 0, y: yOffset)
