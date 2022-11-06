@@ -14,7 +14,6 @@
 		FA4786162917F9AD00025485 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4786102917F9AD00025485 /* StorageService.framework */; };
 		FA4786172917F9AD00025485 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA4786102917F9AD00025485 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA47861D2917F9DB00025485 /* PostProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA47861C2917F9DB00025485 /* PostProfile.swift */; };
-		FA47861E2917F9FE00025485 /* PostProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA47861C2917F9DB00025485 /* PostProfile.swift */; };
 		FA6A62522906EA8D004C5F68 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6A62512906EA8D004C5F68 /* PhotosViewController.swift */; };
 		FA6A62552907CC78004C5F68 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6A62542907CC78004C5F68 /* PhotosCollectionViewCell.swift */; };
 		FA74BFEA28CBAC0500E76DC3 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA74BFE928CBAC0500E76DC3 /* InfoViewController.swift */; };
@@ -310,7 +309,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAD1896E290542730055439A /* PhotosTableViewCell.swift in Sources */,
-				FA47861E2917F9FE00025485 /* PostProfile.swift in Sources */,
 				FAD18970290575B90055439A /* PhotosTableCell.swift in Sources */,
 				FA31D1F228F588EB00ADF730 /* PostTableViewCell.swift in Sources */,
 				FAA25B3C28BFB53800017E1B /* ProfileViewController.swift in Sources */,
