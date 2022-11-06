@@ -10,13 +10,46 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
+    var feedViewController : UINavigationController!
+    var profileViewController : UINavigationController!
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+    
+        
+        
+        
+        
+        feedViewController = UINavigationController.init(rootViewController: FeedViewController())
+        profileViewController = UINavigationController.init(rootViewController: LoginViewController())
+        
+       
+        let item1 = UITabBarItem(title: "Feed", image: UIImage(systemName: "folder.fill.badge.person.crop"), tag: 0)
+        let item2 = UITabBarItem(title: "Profile", image:  UIImage(systemName: "person.circle"), tag: 1)
+        
+               /// закрепляете за кажддым контроллером таббар item
+              feedViewController.tabBarItem = item1
+              profileViewController.tabBarItem = item2
+        
+               /// Обращаемся к методу, который позволяет кастомизировать таббар
+        UITabBar.appearance().tintColor = UIColor(red: 4/255.0, green: 91/255.0, blue: 242/255.0, alpha: 1.0)
+        UITabBar.appearance().backgroundColor = .lightText
+        
+        let tabBarController = UITabBarController()
+        
+        tabBarController.viewControllers = [feedViewController,profileViewController]
+        
+        self.window = UIWindow(windowScene: windowScene)
+//        let window = UIWindow(windowScene: windowScene)
+        self.window?.rootViewController =  tabBarController
+        
+        self.window?.makeKeyAndVisible()
+//        self.window = window
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
