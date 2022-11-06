@@ -1,14 +1,15 @@
 //
 //  PostProfile.swift
-//  Navigation
+//  StorageService
 //
-//  Created by macbook on 15.10.2022.
+//  Created by macbook on 06.11.2022.
 //
 
 import Foundation
+
 import UIKit
 
-struct PostProfile {
+public struct PostProfile {
     var author: String
     var description: String
     var image: String
@@ -43,4 +44,3 @@ let post_1 = PostProfile  (author: "Dog.official" ,
                               views: 90)
 
 var posts: [PostProfile] = [post_1, post_2, post_3, post_4]
-
