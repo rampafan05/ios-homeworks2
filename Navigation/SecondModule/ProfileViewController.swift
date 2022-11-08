@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StorageService
 
 class ProfileViewController: UIViewController {
     
@@ -123,7 +124,11 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView") as! ProfileHeaderView
-            headerView.contentView.backgroundColor = .systemGray6
+#if DEBUG
+headerView.contentView.backgroundColor = .systemGray6
+#else
+headerView.contentView.backgroundColor = .white
+#endif
             return headerView
         } else { return nil }
     }
