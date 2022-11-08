@@ -7,6 +7,7 @@
 
 import UIKit
 import StorageService
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
     // MARK: Author
@@ -21,8 +22,9 @@ class PostTableViewCell: UITableViewCell {
     }()
     // MARK: Image
     
+    
     private lazy var postImage: UIImageView = {
-
+    
         let postImage = UIImageView()
         postImage.translatesAutoresizingMaskIntoConstraints = false
         postImage.backgroundColor = .black
@@ -56,15 +58,23 @@ class PostTableViewCell: UITableViewCell {
         counter.textColor = .black
         return counter
     }
+    let filter = ImageProcessor()
+    
     
     public func setConfigureOfCell(post: PostProfile) {
         self.author.text = post.author
         self.postDescription.text = post.description
         self.postImage.image = UIImage(named: post.image)
+        guard let image = postImage.image else { return }
+        
+//         Добавим наложение фильтра при помощи зависимости iOSIntPackage:
+        filter.processImage(sourceImage: image, filter: .posterize) { filterImage in
+            postImage.image = filterImage
+        }
+
         self.postLikesCounter.text = "Likes: \(post.likes)"
         self.postViewsCounter.text = "Views: \(post.views)"
     }
-    
     
     // MARK: Constraints
     private func setupConstraints(){
