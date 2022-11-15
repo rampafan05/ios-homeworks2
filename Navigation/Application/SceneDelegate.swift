@@ -26,7 +26,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         feedViewController = UINavigationController.init(rootViewController: FeedViewController())
-        profileViewController = UINavigationController.init(rootViewController: LoginViewController())
+        let userService = CurrentUserService()
+profileViewController =  UINavigationController.init(rootViewController: LoginViewController(userService: userService))
         
        
         let item1 = UITabBarItem(title: "Feed", image: UIImage(systemName: "folder.fill.badge.person.crop"), tag: 0)
