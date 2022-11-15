@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		87711AE8368847F5BDACBBA1 /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 023130D7385FFF27B7B40224 /* Pods_Navigation.framework */; };
+		FA1BBAB929222EBF00160FF4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1BBAB829222EBF00160FF4 /* User.swift */; };
 		FA255A2328E436F900AB7AD9 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA255A2228E436F900AB7AD9 /* LogInViewController.swift */; };
 		FA31D1F228F588EB00ADF730 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA31D1F128F588EB00ADF730 /* PostTableViewCell.swift */; };
 		FA3619D3291AAA5D001A0AF4 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = FA3619D2291AAA5D001A0AF4 /* iOSIntPackage */; };
@@ -59,6 +60,7 @@
 		023130D7385FFF27B7B40224 /* Pods_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DE2016C4BC1D5EEFE699B3D /* Pods-Navigation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.debug.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.debug.xcconfig"; sourceTree = "<group>"; };
 		CE9E89F057416D05E3966F3F /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
+		FA1BBAB829222EBF00160FF4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA255A2228E436F900AB7AD9 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		FA31D1F128F588EB00ADF730 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		FA39DF1E28CF118200D80865 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
@@ -120,6 +122,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FA1BBAB729222EA500160FF4 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				FA1BBAB829222EBF00160FF4 /* User.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		FA39DF1D28CF112600D80865 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +138,7 @@
 				FA255A2228E436F900AB7AD9 /* LogInViewController.swift */,
 				FA31D1F128F588EB00ADF730 /* PostTableViewCell.swift */,
 				FA6A62532907C00A004C5F68 /* PhotosCollection */,
+				FA1BBAB729222EA500160FF4 /* User */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -392,6 +403,7 @@
 				FA255A2328E436F900AB7AD9 /* LogInViewController.swift in Sources */,
 				FAA25B3E28C09B5500017E1B /* FeedViewController.swift in Sources */,
 				FAA25B3428BFB3EA00017E1B /* PostViewController.swift in Sources */,
+				FA1BBAB929222EBF00160FF4 /* User.swift in Sources */,
 				FAA25B1C28BFAA7200017E1B /* AppDelegate.swift in Sources */,
 				FAA25B1E28BFAA7200017E1B /* SceneDelegate.swift in Sources */,
 				FA6A62552907CC78004C5F68 /* PhotosCollectionViewCell.swift in Sources */,
@@ -542,6 +554,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -609,6 +622,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)\n$(inherited)\n$(inherited)\n$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit\"",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -622,6 +639,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "rampafan-mail.ru.Navigation";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -637,6 +655,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit\"",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -650,6 +672,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "rampafan-mail.ru.Navigation";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

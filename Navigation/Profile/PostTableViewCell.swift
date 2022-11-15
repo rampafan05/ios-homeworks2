@@ -68,7 +68,7 @@ class PostTableViewCell: UITableViewCell {
         guard let image = postImage.image else { return }
         
 //         Добавим наложение фильтра при помощи зависимости iOSIntPackage:
-        filter.processImage(sourceImage: image, filter: .posterize) { filterImage in
+        filter.processImage(sourceImage: image, filter: .transfer) { filterImage in
             postImage.image = filterImage
         }
 

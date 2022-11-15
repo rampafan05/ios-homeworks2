@@ -8,15 +8,15 @@
 import UIKit
 import SnapKit
 class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
-
-
+    
     lazy var fullNameLabel: UILabel = {
         
         let labelName = UILabel()
-        labelName.text = "Рыжик Пыжик"
+        labelName.text = ""
         labelName.numberOfLines = 3
         labelName.font = UIFont.boldSystemFont(ofSize: 18)
         labelName.textColor = UIColor.black
+        labelName.translatesAutoresizingMaskIntoConstraints = false
 
         return labelName
     }()
@@ -60,6 +60,10 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
         button.layer.cornerRadius = 14
         button.backgroundColor = UIColor.systemBlue
         button.layer.shadowRadius = 6
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.layer.shadowRadius = 4
+        button.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        button.layer.shadowOpacity = 0.7
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
@@ -133,6 +137,11 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
         
         return textField
     }()
+    
+ 
+    
+    
+    
 
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -258,9 +267,9 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
     }
     
    //MARK: SnapKit верстка
-    
+
     func addSubViews() -> Void {
-            
+
             self.addSubview(self.fullNameLabel)
         self.addSubview(self.setButtonSetStatus)
         self.addSubview(self.statusTextField)
@@ -270,16 +279,16 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
         self.addSubview(self.crossButton)
            self.addSubview(self.avatarImageView)
         self.addSubview(self.animationAvatarButton)
-       
-            
+
+
 
             self.fullNameLabel.snp.makeConstraints { (make) in
                 make.leading.equalTo(self.avatarImageView.snp.trailing).offset(16)
                 make.top.equalToSuperview().offset(35)
                 make.height.equalTo(50)
-                make.width.equalTo(150)
+                make.width.equalTo(180)
             }
-        
+
         self.statusLable.snp.makeConstraints { (make) in
             make.leading.equalTo(self.avatarImageView.snp.trailing).offset(16)
             make.top.equalTo(self.statusTextField.snp.top).offset(-65)
@@ -287,42 +296,42 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
             make.height.equalTo(100)
             make.width.equalTo(300)
         }
-        
+
         self.avatarImageView.snp.makeConstraints { (make) in
             make.leading.equalToSuperview().offset(16)
             make.top.equalToSuperview().offset(30)
             make.height.equalTo(130)
             make.width.equalTo(130)
         }
-        
+
         self.transparentView.snp.makeConstraints { (make) in
             make.leading.equalToSuperview().offset(16)
             make.top.equalToSuperview().offset(30)
             make.height.equalTo(130)
             make.width.equalTo(130)
         }
-        
+
         self.crossButton.snp.makeConstraints { (make) in
             make.trailing.equalToSuperview().offset(-25)
             make.top.equalToSuperview().offset(1)
             make.height.equalTo(50)
             make.width.equalTo(50)
         }
-        
+
         self.crossImage.snp.makeConstraints { (make) in
             make.trailing.equalToSuperview().offset(-25)
             make.top.equalToSuperview().offset(1)
             make.height.equalTo(50)
             make.width.equalTo(50)
         }
-        
+
         self.animationAvatarButton.snp.makeConstraints { (make) in
             make.leading.equalToSuperview().offset(16)
             make.top.equalToSuperview().offset(30)
             make.height.equalTo(130)
             make.width.equalTo(130)
         }
-        
+
         self.setButtonSetStatus.snp.makeConstraints { (make) in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
@@ -330,7 +339,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
             make.height.equalTo(50)
             make.width.equalTo(360)
         }
-        
+
         self.statusTextField.snp.makeConstraints { (make) in
             make.leading.equalTo(self.avatarImageView.snp.trailing).offset(16)
             make.trailing.equalToSuperview().offset(-16)
@@ -338,10 +347,10 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
             make.height.equalTo(42)
             make.width.equalTo(209)
         }
-    
+
     }
-    
-            
+
+
 //    func layout() {
 //
 //        NSLayoutConstraint.activate([
@@ -352,7 +361,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
 //            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
 //            fullNameLabel.heightAnchor.constraint(equalToConstant: 50),
 //            fullNameLabel.widthAnchor.constraint(equalToConstant: 150.0),
-
+//
 //
 //            statusLable.topAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -65),
 //
