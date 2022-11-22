@@ -9,6 +9,9 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+//
+  
+    let inspector = MyLoginFactory.shared.returnLoginInspector()
     var window: UIWindow?
     
     var feedViewController : UINavigationController!
@@ -22,12 +25,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
     
         
-        
-        
+        let log = LoginViewController()
+        log.loginDelegate = inspector
         
         feedViewController = UINavigationController.init(rootViewController: FeedViewController())
-        let userService = CurrentUserService()
-profileViewController =  UINavigationController.init(rootViewController: LoginViewController(userService: userService))
+        profileViewController =  UINavigationController.init(rootViewController: log)
+        
         
        
         let item1 = UITabBarItem(title: "Feed", image: UIImage(systemName: "folder.fill.badge.person.crop"), tag: 0)

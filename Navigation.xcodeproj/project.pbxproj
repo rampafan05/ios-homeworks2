@@ -7,19 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		87711AE8368847F5BDACBBA1 /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 023130D7385FFF27B7B40224 /* Pods_Navigation.framework */; };
 		FA1BBAB929222EBF00160FF4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1BBAB829222EBF00160FF4 /* User.swift */; };
+		FA23A84C2923FEE100A03396 /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 023130D7385FFF27B7B40224 /* Pods_Navigation.framework */; };
+		FA23A84E2923FF0500A03396 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4786102917F9AD00025485 /* StorageService.framework */; };
+		FA23A84F2923FF0500A03396 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA4786102917F9AD00025485 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA255A2328E436F900AB7AD9 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA255A2228E436F900AB7AD9 /* LogInViewController.swift */; };
 		FA31D1F228F588EB00ADF730 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA31D1F128F588EB00ADF730 /* PostTableViewCell.swift */; };
 		FA3619D3291AAA5D001A0AF4 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = FA3619D2291AAA5D001A0AF4 /* iOSIntPackage */; };
 		FA39DF1F28CF118200D80865 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39DF1E28CF118200D80865 /* ProfileHeaderView.swift */; };
 		FA4786132917F9AD00025485 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4786122917F9AD00025485 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FA4786162917F9AD00025485 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4786102917F9AD00025485 /* StorageService.framework */; };
-		FA4786172917F9AD00025485 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA4786102917F9AD00025485 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA47861D2917F9DB00025485 /* PostProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA47861C2917F9DB00025485 /* PostProfile.swift */; };
 		FA6A62522906EA8D004C5F68 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6A62512906EA8D004C5F68 /* PhotosViewController.swift */; };
 		FA6A62552907CC78004C5F68 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6A62542907CC78004C5F68 /* PhotosCollectionViewCell.swift */; };
+		FA6EF219292CC1310031740F /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6EF218292CC1310031740F /* Factory.swift */; };
 		FA74BFEA28CBAC0500E76DC3 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA74BFE928CBAC0500E76DC3 /* InfoViewController.swift */; };
+		FA9F45EC292A0DB800DC985D /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9F45EB292A0DB800DC985D /* Checker.swift */; };
 		FAA25B1C28BFAA7200017E1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25B1B28BFAA7200017E1B /* AppDelegate.swift */; };
 		FAA25B1E28BFAA7200017E1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25B1D28BFAA7200017E1B /* SceneDelegate.swift */; };
 		FAA25B2528BFAA7600017E1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA25B2428BFAA7600017E1B /* Assets.xcassets */; };
@@ -43,13 +45,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		FA47861B2917F9AD00025485 /* Embed Frameworks */ = {
+		FA23A8502923FF0500A03396 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FA4786172917F9AD00025485 /* StorageService.framework in Embed Frameworks */,
+				FA23A84F2923FF0500A03396 /* StorageService.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -69,7 +71,9 @@
 		FA47861C2917F9DB00025485 /* PostProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostProfile.swift; sourceTree = "<group>"; };
 		FA6A62512906EA8D004C5F68 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		FA6A62542907CC78004C5F68 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		FA6EF218292CC1310031740F /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 		FA74BFE928CBAC0500E76DC3 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		FA9F45EB292A0DB800DC985D /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		FAA25B1828BFAA7200017E1B /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA25B1B28BFAA7200017E1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAA25B1D28BFAA7200017E1B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,9 +100,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA23A84E2923FF0500A03396 /* StorageService.framework in Frameworks */,
 				FA3619D3291AAA5D001A0AF4 /* iOSIntPackage in Frameworks */,
-				FA4786162917F9AD00025485 /* StorageService.framework in Frameworks */,
-				87711AE8368847F5BDACBBA1 /* Pods_Navigation.framework in Frameworks */,
+				FA23A84C2923FEE100A03396 /* Pods_Navigation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +190,8 @@
 		FAA25B1A28BFAA7200017E1B /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				FA6EF218292CC1310031740F /* Factory.swift */,
+				FA9F45EB292A0DB800DC985D /* Checker.swift */,
 				FAA25B2F28BFB20400017E1B /* Application */,
 				FAA25B3228BFB31100017E1B /* DetailModule */,
 				FAA25B3528BFB45400017E1B /* FirstModule */,
@@ -264,8 +270,8 @@
 				FAA25B1428BFAA7200017E1B /* Sources */,
 				FAA25B1528BFAA7200017E1B /* Frameworks */,
 				FAA25B1628BFAA7200017E1B /* Resources */,
-				FA47861B2917F9AD00025485 /* Embed Frameworks */,
 				0BD328A2C7CD8478B9C9959D /* [CP] Embed Pods Frameworks */,
+				FA23A8502923FF0500A03396 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -406,8 +412,10 @@
 				FA1BBAB929222EBF00160FF4 /* User.swift in Sources */,
 				FAA25B1C28BFAA7200017E1B /* AppDelegate.swift in Sources */,
 				FAA25B1E28BFAA7200017E1B /* SceneDelegate.swift in Sources */,
+				FA6EF219292CC1310031740F /* Factory.swift in Sources */,
 				FA6A62552907CC78004C5F68 /* PhotosCollectionViewCell.swift in Sources */,
 				FA6A62522906EA8D004C5F68 /* PhotosViewController.swift in Sources */,
+				FA9F45EC292A0DB800DC985D /* Checker.swift in Sources */,
 				FA74BFEA28CBAC0500E76DC3 /* InfoViewController.swift in Sources */,
 				FA39DF1F28CF118200D80865 /* ProfileHeaderView.swift in Sources */,
 			);
@@ -617,7 +625,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3DE2016C4BC1D5EEFE699B3D /* Pods-Navigation.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -650,7 +657,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CE9E89F057416D05E3966F3F /* Pods-Navigation.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;

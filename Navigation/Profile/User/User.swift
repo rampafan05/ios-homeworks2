@@ -32,7 +32,7 @@ protocol UserService {
 
 class CurrentUserService: UserService {
     
-    var user = User(login: "Kottok",  fullName: "Рыжий Кот", avatar: UIImage(named: "kot")!, status: "Времененно не женат")
+    var user = User( login: "", fullName: "Рыжий Кот", avatar: UIImage(named: "kot")!, status: "Времененно не женат")
     
     func userService(login: String) -> User? {
         guard login == user.login else { return nil }
@@ -44,7 +44,7 @@ class CurrentUserService: UserService {
   
 class TestUserService: UserService {
     
-    var user = User(login: "Doggod",  fullName: "Собака Королевы", avatar: UIImage(named: "tests")!, status: "На работе, не беспокоить")
+    var user = User( login: "", fullName: "Собака Королевы", avatar: UIImage(named: "tests")!, status: "На работе, не беспокоить")
     
     func userService(login: String) -> User? {
         guard login == user.login else { return nil }

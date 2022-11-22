@@ -9,12 +9,10 @@ import UIKit
 import StorageService
 
 class ProfileViewController: UIViewController {
-    
-   
 
     private var userService: UserService?
-   private var login: String
-
+    private var login: String
+    
     init (userService: UserService, login: String) {
         self.userService = userService
         self.login = login
@@ -143,16 +141,18 @@ extension ProfileViewController: UITableViewDelegate {
         if section == 0 {
             let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView") as! ProfileHeaderView
             // MARK: передача информации в header
-            let currentUser = userService?.userService(login: login)
+            let currentUser = userService?.userService(login: login )
             headerView.fullNameLabel.text = currentUser?.fullName
             headerView.avatarImageView.image = currentUser?.avatar
             headerView.statusLable.text = currentUser?.status
+            
 #if DEBUG
 headerView.contentView.backgroundColor = .systemGray6
 #else
 headerView.contentView.backgroundColor = .white
 #endif
-            return headerView
+            
+           return headerView
         } else { return nil }
     }
     

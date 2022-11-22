@@ -9,24 +9,11 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    var currentUserService: CurrentUserService
+    private var isLogin = false
     
+    var loginDelegate: LoginViewControllerDelegate?
 
-    init (
-        userService: CurrentUserService
-        
-    ) {
-        self.currentUserService = userService
-        
-        super.init(nibName: nil, bundle: nil)
-    }
     
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -203,11 +190,17 @@ class LoginViewController: UIViewController {
     
     @objc func profile() {
 #if DEBUG
-        let testUser = TestUserService()
-        if login.text == testUser.user.login{
-            let exampleViewController = ProfileViewController(userService: testUser, login: login.text!)
-            navigationController?.pushViewController(exampleViewController, animated: true)
-            //            navigationController?.setViewControllers([exampleViewController], animated: true)
+        let userService = CurrentUserService()
+#else
+        let userService = TestUserService()
+#endif
+//MARK: проверка Логина и Пароля, введенного пользователем с помощью loginDelegate
+        let profileVC = ProfileViewController(userService: userService, login: login.text!)
+
+        if loginDelegate?.check(login.text!, password.text!) == true {
+            isLogin = true
+            login.text = userService.user.fullName
+            navigationController?.pushViewController(profileVC, animated: true)
         } else {
             let alert = UIAlertController(title: "⚠️Внимание⚠️", message: "Логин введен не верно попробуйте снова", preferredStyle: .alert)
             let ok = UIAlertAction(title: "ОК", style: .destructive, handler: { _ in
@@ -216,21 +209,6 @@ class LoginViewController: UIViewController {
             
             present(alert, animated: true, completion: nil)
         }
-#else
-        if login.text == currentUserService.user.login{
-            let userService = CurrentUserService()
-            let exampleViewController = ProfileViewController(userService: userService, login: login.text!)
-            navigationController?.pushViewController(exampleViewController, animated: true)
-            //            navigationController?.setViewControllers([exampleViewController], animated: true)
-        } else {
-            let alert = UIAlertController(title: "⚠️Внимание⚠️", message: "Логин введен не верно попробуйте снова", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "ОК", style: .default, handler: { _ in
-                print("НЕ ВЕРНО")})
-            alert.addAction(ok)
-            
-            present(alert, animated: true, completion: nil)
-        }
-#endif
     }
     
 }
