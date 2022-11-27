@@ -18,9 +18,15 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         return image
     }()
     
-    public func setConfigureOfCell(photos: Photos) {
-        self.imagePhotosCell.image = UIImage(named: photos.image)
+//    public func setConfigureOfCell(photos: Photos) {
+//        self.imagePhotosCell.image = UIImage(named: photos.image)
+//    }
+     
+    public func setConfigureOfCell(photos: UIImage) {
+        
+        self.imagePhotosCell.image = photos
     }
+  
     
     override init(frame: CGRect) {
         super.init(frame: frame)

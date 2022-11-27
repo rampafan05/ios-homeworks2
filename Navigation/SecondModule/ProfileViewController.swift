@@ -6,8 +6,24 @@
 //
 
 import UIKit
+import StorageService
 
 class ProfileViewController: UIViewController {
+
+    private var userService: UserService?
+    private var login: String
+    
+    init (userService: UserService, login: String) {
+        self.userService = userService
+        self.login = login
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     
     private lazy var tableView: UITableView = {
         
@@ -38,6 +54,7 @@ class ProfileViewController: UIViewController {
     
     
     override func viewDidLoad() {
+       
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
         headerLayot()
@@ -123,8 +140,19 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView") as! ProfileHeaderView
-            headerView.contentView.backgroundColor = .systemGray6
-            return headerView
+            // MARK: передача информации в header
+            let currentUser = userService?.userService(login: login )
+            headerView.fullNameLabel.text = currentUser?.fullName
+            headerView.avatarImageView.image = currentUser?.avatar
+            headerView.statusLable.text = currentUser?.status
+            
+#if DEBUG
+headerView.contentView.backgroundColor = .systemGray6
+#else
+headerView.contentView.backgroundColor = .white
+#endif
+            
+           return headerView
         } else { return nil }
     }
     
