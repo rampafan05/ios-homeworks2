@@ -13,8 +13,8 @@ class Checker {
     
     private init() {}
     
-    private let login = "Roma"
-    private let password = "12345"
+    private let login = "R"
+    private let password = "1"
     
     func chek(_ login1: String, _ password1: String) -> Bool{
         guard login1 == self.login && password1 == self.password else { return false }

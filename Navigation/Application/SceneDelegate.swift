@@ -25,11 +25,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
     
         
-        let log = LoginViewController()
-        log.loginDelegate = inspector
+        let logVC = LoginViewController()
+        logVC.loginDelegate = inspector
         
         feedViewController = UINavigationController.init(rootViewController: FeedViewController())
-        profileViewController =  UINavigationController.init(rootViewController: log)
+        profileViewController =  UINavigationController.init(rootViewController: logVC)
         
         
        

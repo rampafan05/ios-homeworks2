@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import iOSIntPackage
 
-class PhotosViewController: UIViewController {
-    
+class PhotosViewController: UIViewController , ImageLibrarySubscriber{
+ 
+    //MARK: Экземпляр класса ImagePublisherFacade()
+var  imagePublisherFacade =  ImagePublisherFacade()
+ //MARK: Создал экземпляр класса UIIMAGE
+    var newPhotos = [UIImage]()
+  
     private enum Constant {
         static let numberOfItemsInLine: CGFloat = 3
     }
@@ -38,10 +44,18 @@ class PhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
-    self.setupNavigationBar()
+        //MARK: Подписка на изменения
+        imagePublisherFacade.subscribe(self)
+        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 15)
         
         self.setup()
+    }
+    //MARK: Отмена подписки методом deinit
+    deinit {
+        
+        imagePublisherFacade.removeSubscription(for: self)
+        imagePublisherFacade.rechargeImageLibrary()
+        
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -76,9 +90,15 @@ class PhotosViewController: UIViewController {
 }
 
 extension PhotosViewController:UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    // MARK: метод протокола ImageLibrarySubscriber
+    func receive(images: [UIImage]) {
+        newPhotos = images
+       collectionView.reloadData()
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        photos.count
+        
+        return newPhotos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -86,8 +106,8 @@ extension PhotosViewController:UICollectionViewDataSource,UICollectionViewDelega
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DefaultCell", for: indexPath)
             return cell
         }
-        
-        cell.setConfigureOfCell(photos: photos[indexPath.row])
+        //MARK: Добавление фото в ячейки коллекции 
+        cell.setConfigureOfCell(photos: newPhotos[indexPath.item])
         
         return cell
     }
@@ -105,6 +125,4 @@ extension PhotosViewController:UICollectionViewDataSource,UICollectionViewDelega
     }
     
 }
-
-    
 

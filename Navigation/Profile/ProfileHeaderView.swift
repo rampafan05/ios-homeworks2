@@ -238,7 +238,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
             self.avatarImageView.center = CGPoint(x: startPoint.x + 126, y: startPoint.y + 170)
         } completion: { _ in
             UIView.animate(withDuration: 0.5, delay: 0.0) {
-                self.avatarImageView.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+                self.avatarImageView.transform = CGAffineTransform(scaleX: 2.5, y: 2.5)
             }completion: { _ in
                 //MARK: Доп. задание
                 UIView.animate(withDuration: 0.4, delay: 0.0) {

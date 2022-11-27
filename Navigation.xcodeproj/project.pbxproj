@@ -13,7 +13,6 @@
 		FA23A84F2923FF0500A03396 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA4786102917F9AD00025485 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA255A2328E436F900AB7AD9 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA255A2228E436F900AB7AD9 /* LogInViewController.swift */; };
 		FA31D1F228F588EB00ADF730 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA31D1F128F588EB00ADF730 /* PostTableViewCell.swift */; };
-		FA3619D3291AAA5D001A0AF4 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = FA3619D2291AAA5D001A0AF4 /* iOSIntPackage */; };
 		FA39DF1F28CF118200D80865 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39DF1E28CF118200D80865 /* ProfileHeaderView.swift */; };
 		FA4786132917F9AD00025485 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4786122917F9AD00025485 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FA47861D2917F9DB00025485 /* PostProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA47861C2917F9DB00025485 /* PostProfile.swift */; };
@@ -32,6 +31,7 @@
 		FAA25B3E28C09B5500017E1B /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25B3D28C09B5500017E1B /* FeedViewController.swift */; };
 		FAD1896E290542730055439A /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1896D290542730055439A /* PhotosTableViewCell.swift */; };
 		FAD18970290575B90055439A /* PhotosTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1896F290575B90055439A /* PhotosTableCell.swift */; };
+		FAEFDF4D292D411C002E90F9 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = FAEFDF4C292D411C002E90F9 /* iOSIntPackage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,8 +100,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAEFDF4D292D411C002E90F9 /* iOSIntPackage in Frameworks */,
 				FA23A84E2923FF0500A03396 /* StorageService.framework in Frameworks */,
-				FA3619D3291AAA5D001A0AF4 /* iOSIntPackage in Frameworks */,
 				FA23A84C2923FEE100A03396 /* Pods_Navigation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,7 +280,7 @@
 			);
 			name = Navigation;
 			packageProductDependencies = (
-				FA3619D2291AAA5D001A0AF4 /* iOSIntPackage */,
+				FAEFDF4C292D411C002E90F9 /* iOSIntPackage */,
 			);
 			productName = Navigation;
 			productReference = FAA25B1828BFAA7200017E1B /* Navigation.app */;
@@ -315,7 +315,7 @@
 			);
 			mainGroup = FAA25B0F28BFAA7200017E1B;
 			packageReferences = (
-				FA3619D1291AAA5D001A0AF4 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+				FAEFDF4B292D411C002E90F9 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
 			);
 			productRefGroup = FAA25B1928BFAA7200017E1B /* Products */;
 			projectDirPath = "";
@@ -718,20 +718,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FA3619D1291AAA5D001A0AF4 /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
+		FAEFDF4B292D411C002E90F9 /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TrueMax/iOSIntPackage.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				branch = imagepublisher;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FA3619D2291AAA5D001A0AF4 /* iOSIntPackage */ = {
+		FAEFDF4C292D411C002E90F9 /* iOSIntPackage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FA3619D1291AAA5D001A0AF4 /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
+			package = FAEFDF4B292D411C002E90F9 /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
