@@ -9,6 +9,12 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    private var isLogin = false
+    
+    var loginDelegate: LoginViewControllerDelegate?
+
+    
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +59,7 @@ class LoginViewController: UIViewController {
         textField.font = .systemFont(ofSize: 16, weight: .regular)
         textField.tintColor = UIColor.tintColor
         textField.autocorrectionType = .no
-        textField.keyboardType = .phonePad
+//        textField.keyboardType = .phonePad
         textField.clearButtonMode = .whileEditing
         textField.translatesAutoresizingMaskIntoConstraints = false
         
@@ -181,10 +187,28 @@ class LoginViewController: UIViewController {
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
+    
     @objc func profile() {
-        let exampleViewController = ProfileViewController()
-        navigationController?.pushViewController(exampleViewController, animated: true)
+#if DEBUG
+        let userService = CurrentUserService()
+#else
+        let userService = TestUserService()
+#endif
+//MARK: проверка Логина и Пароля, введенного пользователем с помощью loginDelegate
+        let profileVC = ProfileViewController(userService: userService, login: login.text!)
+
+        if loginDelegate?.check(login.text!, password.text!) == true {
+            isLogin = true
+            login.text = userService.user.fullName
+            navigationController?.pushViewController(profileVC, animated: true)
+        } else {
+            let alert = UIAlertController(title: "⚠️Внимание⚠️", message: "Логин введен не верно попробуйте снова", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "ОК", style: .destructive, handler: { _ in
+                print("НЕ ВЕРНО")})
+            alert.addAction(ok)
+            
+            present(alert, animated: true, completion: nil)
+        }
     }
     
 }
-
