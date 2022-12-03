@@ -8,7 +8,9 @@
 import UIKit
 import SnapKit
 class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
-    
+
+
+  
     lazy var fullNameLabel: UILabel = {
         
         let labelName = UILabel()
@@ -51,14 +53,13 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
     }()
 
     lazy var setButtonSetStatus: UIButton = {
-        
-        var button = UIButton()
-        button = UIButton(type: .roundedRect)
-        button.setTitle("Set status", for: .normal)
+       //MARK: Заменил обычный UIButton на кастомный 
+    
+       var button = UIButton(type: .roundedRect)
+        button.setTitle("Button", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 14
-        button.backgroundColor = UIColor.systemBlue
+        button.backgroundColor = .systemBlue
         button.layer.shadowRadius = 6
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowRadius = 4
@@ -69,7 +70,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         button.isUserInteractionEnabled = true
         
-        return button
+        return button 
     }()
     // MARK: CROSS
     lazy var crossImage: UIImageView = {

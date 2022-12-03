@@ -129,11 +129,14 @@ extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == 0 {
+            // MARK: Переход на Альбом
+            let exampleViewController =  PhotosViewController()
+            // MARK: NAVIGATION BAR
+            navigationController?.pushViewController(exampleViewController, animated: true)
+        }
+            
         
-        // MARK: Переход на Альбом
-        let exampleViewController =  PhotosViewController()
-        // MARK: NAVIGATION BAR
-        navigationController?.pushViewController(exampleViewController, animated: true)
     }
     
     
@@ -154,6 +157,7 @@ headerView.contentView.backgroundColor = .white
             
            return headerView
         } else { return nil }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
