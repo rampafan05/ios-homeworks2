@@ -7,8 +7,21 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController{
     
+    private var coordinator: LoginCoordinator
+    
+    init(coordinator: LoginCoordinator){
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    var loginDelegate: LoginViewControllerDelegate?
+
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,6 +58,7 @@ class LoginViewController: UIViewController {
     private lazy var login: UITextField = {
         var textField = UITextField()
         textField.placeholder = "Email of phone"
+        textField.text = "R" // на время
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.leftViewMode = .always
         textField.backgroundColor = .systemGray6
@@ -53,7 +67,7 @@ class LoginViewController: UIViewController {
         textField.font = .systemFont(ofSize: 16, weight: .regular)
         textField.tintColor = UIColor.tintColor
         textField.autocorrectionType = .no
-        textField.keyboardType = .phonePad
+//        textField.keyboardType = .phonePad
         textField.clearButtonMode = .whileEditing
         textField.translatesAutoresizingMaskIntoConstraints = false
         
@@ -62,6 +76,7 @@ class LoginViewController: UIViewController {
     
     private lazy var password: UITextField = {
         var textField = UITextField()
+        textField.text = "1" // на время
         textField.placeholder = "Password"
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.leftViewMode = .always
@@ -181,10 +196,27 @@ class LoginViewController: UIViewController {
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
+    
     @objc func profile() {
-        let exampleViewController = ProfileViewController()
-        navigationController?.pushViewController(exampleViewController, animated: true)
+#if DEBUG
+        let userService = CurrentUserService()
+#else
+        let userService = TestUserService()
+#endif
+//MARK: проверка Логина и Пароля, введенного пользователем с помощью loginDelegate
+        let profileVC = ProfileViewController(userService: userService, login: login.text!)
+
+        if loginDelegate?.check(login.text!, password.text!) == true {
+            login.text = userService.user.fullName
+            navigationController?.pushViewController(profileVC, animated: true)
+        } else {
+            let alert = UIAlertController(title: "⚠️Внимание⚠️", message: "Логин введен не верно попробуйте снова", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "ОК", style: .destructive, handler: { _ in
+                print("НЕ ВЕРНО")})
+            alert.addAction(ok)
+            
+            present(alert, animated: true, completion: nil)
+        }
     }
     
 }
-
