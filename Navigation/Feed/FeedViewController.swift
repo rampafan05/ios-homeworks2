@@ -9,11 +9,25 @@ import UIKit
 
 class FeedViewController: UIViewController{
     
+    private let coordinator: FeedCoordinator
+    init(
+        
+        coordinator: FeedCoordinator
+    ) {
+       
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     var feed = FeedModel()
     
     var post = Post(title: "Post")
     
-    let stackView: UIStackView = {
+   private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 10
@@ -22,18 +36,10 @@ class FeedViewController: UIViewController{
         return stackView
     }()
     //MARK: Кастомная кнопка
-    lazy var button1: CustomButton = {
-        var button1 = CustomButton()
-        
-        button1.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button1
-    }()
+   private let button1 = CustomButton(title: "Button1", bgColor: UIColor.systemOrange)
+    
     //MARK: Кастомная кнопка
-    lazy var button2: CustomButton = {
-        var button2 = CustomButton()
-        return button2
-    }()
+   private let button2 = CustomButton(title: "Button2", bgColor: UIColor.systemBlue)
     
     lazy var textField: UITextField = {
         
@@ -47,12 +53,8 @@ class FeedViewController: UIViewController{
         return text
     }()
     //MARK: Кастомная кнопка
-    private lazy var checkGuessButton: CustomButton = {
-        
-        var button = CustomButton()
-        return button
-    }()
     
+    let checkGuessButton = CustomButton(title: "Check Button", bgColor: UIColor.systemBlue )
     
     private lazy var colorLabel: UILabel = {
         
@@ -93,6 +95,10 @@ class FeedViewController: UIViewController{
             colorLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
+    //MARK: функция, которая выводит текст
+    func tapTextFeild() {
+        print(feed.check(word: textField.text!) )
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,6 +121,7 @@ class FeedViewController: UIViewController{
             guard let self = self else { return }
             self.showDetailController()
         }
+        
         //MARK: TASK 6. PART 2. Natification Default Add Observer
         NotificationCenter.default.addObserver(
             self,
@@ -146,10 +153,6 @@ class FeedViewController: UIViewController{
         navigationController?.pushViewController(exampleViewController, animated: true)
     }
     
-    //MARK: функция, которая выводит текст
-    func tapTextFeild() {
-        print(feed.check(word: textField.text!) )
-    }
     
 }
 

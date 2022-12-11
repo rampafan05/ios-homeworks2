@@ -352,69 +352,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
     }
 
 
-//    func layout() {
-//
-//        NSLayoutConstraint.activate([
-//
-//
-//
-//            fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 35),
-//            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-//            fullNameLabel.heightAnchor.constraint(equalToConstant: 50),
-//            fullNameLabel.widthAnchor.constraint(equalToConstant: 150.0),
-//
-//
-//            statusLable.topAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -65),
-//
-//            statusLable.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-//            statusLable.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-//            statusLable.heightAnchor.constraint(equalToConstant: 100),
-//            statusLable.widthAnchor.constraint(equalToConstant: 300),
-//
-//            crossButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 1),
-//            crossButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25),
-//            crossButton.heightAnchor.constraint(equalToConstant: 50),
-//            crossButton.widthAnchor.constraint(equalToConstant: 50),
-//
-//            crossImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 1),
-//            crossImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25),
-//            crossImage.heightAnchor.constraint(equalToConstant: 40),
-//            crossImage.widthAnchor.constraint(equalToConstant: 40),
-//
-//
-//            avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 30),
-//            avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-//            avatarImageView.heightAnchor.constraint(equalToConstant: 130),
-//            avatarImageView.widthAnchor.constraint(equalToConstant: 130),
-//
-//            transparentView.topAnchor.constraint(equalTo: self.topAnchor, constant: 30),
-//            transparentView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-//            transparentView.heightAnchor.constraint(equalToConstant: 130),
-//            transparentView.widthAnchor.constraint(equalToConstant: 130),
-//
-//
-//            animationAvatarButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 30),
-//            animationAvatarButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-//            animationAvatarButton.heightAnchor.constraint(equalToConstant: 130),
-//            animationAvatarButton.widthAnchor.constraint(equalToConstant: 130),
-//
-//
-//            setButtonSetStatus.topAnchor.constraint(equalTo: self.topAnchor, constant: 170),
-//            setButtonSetStatus.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-//            setButtonSetStatus.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-//            setButtonSetStatus.heightAnchor.constraint(equalToConstant: 50),
-//            setButtonSetStatus.widthAnchor.constraint(equalToConstant: 360),
-//
-//
-//            statusTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: 120),
-//            statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-//            statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-//            statusTextField.heightAnchor.constraint(equalToConstant: 42),
-//            statusTextField.widthAnchor.constraint(equalToConstant: 209),
-//
-//        ])
-//
-//    }
     
     
     @objc private func didTapAnimationButton() {

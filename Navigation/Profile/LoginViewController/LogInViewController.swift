@@ -7,14 +7,21 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController{
     
-    private var isLogin = false
+    private var coordinator: LoginCoordinator
+    
+    init(coordinator: LoginCoordinator){
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     var loginDelegate: LoginViewControllerDelegate?
 
-    
-    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -51,6 +58,7 @@ class LoginViewController: UIViewController {
     private lazy var login: UITextField = {
         var textField = UITextField()
         textField.placeholder = "Email of phone"
+        textField.text = "R" // на время
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.leftViewMode = .always
         textField.backgroundColor = .systemGray6
@@ -68,6 +76,7 @@ class LoginViewController: UIViewController {
     
     private lazy var password: UITextField = {
         var textField = UITextField()
+        textField.text = "1" // на время
         textField.placeholder = "Password"
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.leftViewMode = .always
@@ -198,7 +207,6 @@ class LoginViewController: UIViewController {
         let profileVC = ProfileViewController(userService: userService, login: login.text!)
 
         if loginDelegate?.check(login.text!, password.text!) == true {
-            isLogin = true
             login.text = userService.user.fullName
             navigationController?.pushViewController(profileVC, animated: true)
         } else {

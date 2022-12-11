@@ -9,8 +9,19 @@ import UIKit
 
 class PhotosTableViewCell: UITableViewCell{
     
+    
+    private lazy var stackView: UIStackView = {
+        var stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 5
+        stackView.distribution = .fillProportionally
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return stackView
+    }()
+    
     // MARK: Title
-    lazy var title: UILabel = {
+ private lazy var title: UILabel = {
         
         let title = UILabel()
         title.text = "Photos"
@@ -22,7 +33,7 @@ class PhotosTableViewCell: UITableViewCell{
     }()
     
     // MARK: Arrow
-    lazy var arrow: UIImageView = {
+   private lazy var arrow: UIImageView = {
         
         var  arrow = UIImageView()
         let image = UIImage(systemName: "arrow.right")
@@ -34,53 +45,51 @@ class PhotosTableViewCell: UITableViewCell{
     }()
     
     // MARK: Image0
-    lazy var photo_0: UIImageView = {
+  private  lazy var photo_0: UIImageView = {
         
         var  photo_0 = UIImageView()
         let image = UIImage(named: "photo_0")
         photo_0.image = image
         photo_0.layer.cornerRadius = 6
         photo_0.clipsToBounds = true
-        photo_0.translatesAutoresizingMaskIntoConstraints = false
         
         return photo_0
     }()
     
     // MARK: Image1
-    lazy var photo_1: UIImageView = {
+   private lazy var photo_1: UIImageView = {
         
         var  photo_1 = UIImageView()
         let image = UIImage(named: "photo_0-1")
         photo_1.image = image
         photo_1.layer.cornerRadius = 6
         photo_1.clipsToBounds = true
-        photo_1.translatesAutoresizingMaskIntoConstraints = false
-        
+
         return photo_1
     }()
     
     // MARK: Image2
-    lazy var photo_2: UIImageView = {
+    private  lazy var photo_2: UIImageView = {
         
         var  photo_2 = UIImageView()
-        let image = UIImage(named: "photo_0-2")
+        let image = UIImage(named: "photo_0-7")
         photo_2.image = image
         photo_2.layer.cornerRadius = 6
         photo_2.clipsToBounds = true
-        photo_2.translatesAutoresizingMaskIntoConstraints = false
+
         
         return photo_2
     }()
     
     // MARK: Image3
-    lazy var photo_3: UIImageView = {
+    private lazy var photo_3: UIImageView = {
         
         var  photo_3 = UIImageView()
         let image = UIImage(named: "photo_0-3")
         photo_3.image = image
         photo_3.layer.cornerRadius = 6
         photo_3.clipsToBounds = true
-        photo_3.translatesAutoresizingMaskIntoConstraints = false
+
         
         return photo_3
     }()
@@ -97,14 +106,14 @@ class PhotosTableViewCell: UITableViewCell{
     
     
     func layoutPhotos() {
-        
+        contentView.addSubview(stackView)
+        self.stackView.addArrangedSubview(photo_0)
+        self.stackView.addArrangedSubview(photo_1)
+        self.stackView.addArrangedSubview(photo_3)
+        self.stackView.addArrangedSubview(photo_2)
         contentView.addSubview(self.arrow)
         contentView.addSubview(self.title)
-        contentView.addSubview(self.photo_0)
-        contentView.addSubview(self.photo_1)
-        contentView.addSubview(self.photo_2)
-        contentView.addSubview(self.photo_3)
-        
+
         NSLayoutConstraint.activate([
             contentView.widthAnchor.constraint(equalTo: self.widthAnchor),
             
@@ -113,42 +122,16 @@ class PhotosTableViewCell: UITableViewCell{
             title.widthAnchor.constraint(equalToConstant: 100),
             title.heightAnchor.constraint(equalToConstant: 30),
             
-            
             arrow.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
             arrow.centerYAnchor.constraint(equalTo: self.title.centerYAnchor),
             arrow.widthAnchor.constraint(equalToConstant: 30),
             arrow.heightAnchor.constraint(equalToConstant: 30),
             arrow.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
             
-            
-            photo_0.topAnchor.constraint(equalTo: self.title.bottomAnchor, constant: 12),
-            photo_0.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
-            photo_0.heightAnchor.constraint(equalToConstant: 100),
-            photo_0.widthAnchor.constraint(equalToConstant: 93),
-            photo_0.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
-            
-            
-            photo_1.topAnchor.constraint(equalTo: self.title.bottomAnchor, constant: 12),
-            photo_1.leftAnchor.constraint(equalTo: self.photo_0.rightAnchor, constant: 8),
-            photo_1.heightAnchor.constraint(equalToConstant: 100),
-            photo_1.widthAnchor.constraint(equalToConstant: 93),
-            photo_1.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
-            
-            
-            photo_2.topAnchor.constraint(equalTo: self.title.bottomAnchor, constant: 12),
-            photo_2.leftAnchor.constraint(equalTo: self.photo_1.rightAnchor, constant: 8),
-            photo_2.rightAnchor.constraint(equalTo: self.photo_3.leftAnchor, constant: -8),
-            photo_2.heightAnchor.constraint(equalToConstant: 100),
-            photo_2.widthAnchor.constraint(equalToConstant: 93),
-            photo_2.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
-            
-            
-            photo_3.topAnchor.constraint(equalTo: self.title.bottomAnchor, constant: 12),
-            photo_3.leftAnchor.constraint(equalTo: self.photo_2.rightAnchor, constant: 8),
-            photo_3.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
-            photo_3.heightAnchor.constraint(equalToConstant: 100),
-            photo_3.widthAnchor.constraint(equalToConstant: 93),
-            photo_3.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
+            stackView.topAnchor.constraint(equalTo: self.title.bottomAnchor, constant: 12),
+            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
             
         ])
     }

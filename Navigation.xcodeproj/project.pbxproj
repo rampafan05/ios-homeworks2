@@ -31,9 +31,16 @@
 		FAA25B3928BFB4FA00017E1B /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25B3828BFB4FA00017E1B /* Post.swift */; };
 		FAA25B3C28BFB53800017E1B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25B3B28BFB53800017E1B /* ProfileViewController.swift */; };
 		FAA25B3E28C09B5500017E1B /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA25B3D28C09B5500017E1B /* FeedViewController.swift */; };
+		FAA8DDFA2940EE3C00F2E73B /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8DDF92940EE3C00F2E73B /* LoginCoordinator.swift */; };
+		FAA8DDFD294100F400F2E73B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8DDFC294100F400F2E73B /* ProfileViewModel.swift */; };
+		FAA8DDFF2941011500F2E73B /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8DDFE2941011500F2E73B /* FeedViewModel.swift */; };
 		FAD1896E290542730055439A /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1896D290542730055439A /* PhotosTableViewCell.swift */; };
 		FAD18970290575B90055439A /* PhotosTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1896F290575B90055439A /* PhotosTableCell.swift */; };
 		FAEFDF4D292D411C002E90F9 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = FAEFDF4C292D411C002E90F9 /* iOSIntPackage */; };
+		FAFCCC1D293FAC1E00109084 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCCC1C293FAC1E00109084 /* MainCoordinator.swift */; };
+		FAFCCC1F293FD1AC00109084 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCCC1E293FD1AC00109084 /* MainTabBarViewController.swift */; };
+		FAFCCC21293FD2F400109084 /* FactoryNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCCC20293FD2F400109084 /* FactoryNavigation.swift */; };
+		FAFCCC23293FD7EE00109084 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCCC22293FD7EE00109084 /* FeedCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,8 +95,15 @@
 		FAA25B3828BFB4FA00017E1B /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		FAA25B3B28BFB53800017E1B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../SecondModule/ProfileViewController.swift; sourceTree = "<group>"; };
 		FAA25B3D28C09B5500017E1B /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		FAA8DDF92940EE3C00F2E73B /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		FAA8DDFC294100F400F2E73B /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		FAA8DDFE2941011500F2E73B /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		FAD1896D290542730055439A /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		FAD1896F290575B90055439A /* PhotosTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableCell.swift; sourceTree = "<group>"; };
+		FAFCCC1C293FAC1E00109084 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		FAFCCC1E293FD1AC00109084 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		FAFCCC20293FD2F400109084 /* FactoryNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoryNavigation.swift; sourceTree = "<group>"; };
+		FAFCCC22293FD7EE00109084 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,10 +155,11 @@
 		FA39DF1D28CF112600D80865 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				FAA8DDFB2941009500F2E73B /* LoginViewController */,
 				FA39DF1E28CF118200D80865 /* ProfileHeaderView.swift */,
 				FAA25B3B28BFB53800017E1B /* ProfileViewController.swift */,
-				FA255A2228E436F900AB7AD9 /* LogInViewController.swift */,
 				FA31D1F128F588EB00ADF730 /* PostTableViewCell.swift */,
+				FAD1896D290542730055439A /* PhotosTableViewCell.swift */,
 				FA6A62532907C00A004C5F68 /* PhotosCollection */,
 				FA1BBAB729222EA500160FF4 /* User */,
 			);
@@ -165,7 +180,6 @@
 			children = (
 				FA6A62512906EA8D004C5F68 /* PhotosViewController.swift */,
 				FAD1896F290575B90055439A /* PhotosTableCell.swift */,
-				FAD1896D290542730055439A /* PhotosTableViewCell.swift */,
 				FA6A62542907CC78004C5F68 /* PhotosCollectionViewCell.swift */,
 			);
 			path = PhotosCollection;
@@ -194,14 +208,18 @@
 		FAA25B1A28BFAA7200017E1B /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				FAA25B2F28BFB20400017E1B /* Application */,
+				FAFCCC19293FA08500109084 /* Coordinators */,
+				FAA8DDF22940EC4800F2E73B /* Factory */,
+				FAA8DDF12940EADA00F2E73B /* Modules */,
+				FAA8DDF52940ECCA00F2E73B /* MainTabBarViewController */,
 				FA4A6DD9293B3A4F00902D9B /* FeedModel.swift */,
 				FA096870293513000068A423 /* CustomButton.swift */,
 				FA6EF218292CC1310031740F /* Factory.swift */,
 				FA9F45EB292A0DB800DC985D /* Checker.swift */,
-				FAA25B2F28BFB20400017E1B /* Application */,
 				FAA25B3228BFB31100017E1B /* DetailModule */,
-				FAA25B3528BFB45400017E1B /* FirstModule */,
 				FA39DF1D28CF112600D80865 /* Profile */,
+				FAA25B3528BFB45400017E1B /* Feed */,
 				FAA25B2428BFAA7600017E1B /* Assets.xcassets */,
 				FAA25B2628BFAA7600017E1B /* LaunchScreen.storyboard */,
 				FAA25B2928BFAA7600017E1B /* Info.plist */,
@@ -227,13 +245,80 @@
 			path = DetailModule;
 			sourceTree = "<group>";
 		};
-		FAA25B3528BFB45400017E1B /* FirstModule */ = {
+		FAA25B3528BFB45400017E1B /* Feed */ = {
 			isa = PBXGroup;
 			children = (
 				FAA25B3828BFB4FA00017E1B /* Post.swift */,
 				FAA25B3D28C09B5500017E1B /* FeedViewController.swift */,
 			);
-			path = FirstModule;
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		FAA8DDF12940EADA00F2E73B /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8DDFC294100F400F2E73B /* ProfileViewModel.swift */,
+				FAA8DDFE2941011500F2E73B /* FeedViewModel.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		FAA8DDF22940EC4800F2E73B /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				FAFCCC20293FD2F400109084 /* FactoryNavigation.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		FAA8DDF52940ECCA00F2E73B /* MainTabBarViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FAFCCC1E293FD1AC00109084 /* MainTabBarViewController.swift */,
+			);
+			path = MainTabBarViewController;
+			sourceTree = "<group>";
+		};
+		FAA8DDF62940ED4A00F2E73B /* MainCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				FAFCCC1C293FAC1E00109084 /* MainCoordinator.swift */,
+			);
+			path = MainCoordinator;
+			sourceTree = "<group>";
+		};
+		FAA8DDF72940EDC000F2E73B /* FeedCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				FAFCCC22293FD7EE00109084 /* FeedCoordinator.swift */,
+			);
+			path = FeedCoordinator;
+			sourceTree = "<group>";
+		};
+		FAA8DDF82940EDF500F2E73B /* LoginCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8DDF92940EE3C00F2E73B /* LoginCoordinator.swift */,
+			);
+			path = LoginCoordinator;
+			sourceTree = "<group>";
+		};
+		FAA8DDFB2941009500F2E73B /* LoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FA255A2228E436F900AB7AD9 /* LogInViewController.swift */,
+			);
+			path = LoginViewController;
+			sourceTree = "<group>";
+		};
+		FAFCCC19293FA08500109084 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8DDF82940EDF500F2E73B /* LoginCoordinator */,
+				FAA8DDF72940EDC000F2E73B /* FeedCoordinator */,
+				FAA8DDF62940ED4A00F2E73B /* MainCoordinator */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -410,15 +495,22 @@
 				FAD1896E290542730055439A /* PhotosTableViewCell.swift in Sources */,
 				FA4A6DDA293B3A4F00902D9B /* FeedModel.swift in Sources */,
 				FAD18970290575B90055439A /* PhotosTableCell.swift in Sources */,
+				FAFCCC1F293FD1AC00109084 /* MainTabBarViewController.swift in Sources */,
 				FA096871293513000068A423 /* CustomButton.swift in Sources */,
 				FA31D1F228F588EB00ADF730 /* PostTableViewCell.swift in Sources */,
+				FAA8DDFA2940EE3C00F2E73B /* LoginCoordinator.swift in Sources */,
 				FAA25B3C28BFB53800017E1B /* ProfileViewController.swift in Sources */,
+				FAFCCC1D293FAC1E00109084 /* MainCoordinator.swift in Sources */,
 				FAA25B3928BFB4FA00017E1B /* Post.swift in Sources */,
 				FA255A2328E436F900AB7AD9 /* LogInViewController.swift in Sources */,
 				FAA25B3E28C09B5500017E1B /* FeedViewController.swift in Sources */,
+				FAA8DDFF2941011500F2E73B /* FeedViewModel.swift in Sources */,
 				FAA25B3428BFB3EA00017E1B /* PostViewController.swift in Sources */,
 				FA1BBAB929222EBF00160FF4 /* User.swift in Sources */,
+				FAA8DDFD294100F400F2E73B /* ProfileViewModel.swift in Sources */,
+				FAFCCC23293FD7EE00109084 /* FeedCoordinator.swift in Sources */,
 				FAA25B1C28BFAA7200017E1B /* AppDelegate.swift in Sources */,
+				FAFCCC21293FD2F400109084 /* FactoryNavigation.swift in Sources */,
 				FAA25B1E28BFAA7200017E1B /* SceneDelegate.swift in Sources */,
 				FA6EF219292CC1310031740F /* Factory.swift in Sources */,
 				FA6A62552907CC78004C5F68 /* PhotosCollectionViewCell.swift in Sources */,
