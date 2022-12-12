@@ -9,12 +9,14 @@ import UIKit
 
 class FeedViewController: UIViewController{
     
-    private let coordinator: FeedCoordinator
+    private let coordinator: FeedCoordinator?
+    private let viewModel: FeedModel?
+    
     init(
-        
+        viewModel: FeedModel,
         coordinator: FeedCoordinator
     ) {
-       
+        self.viewModel = viewModel
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
@@ -23,9 +25,9 @@ class FeedViewController: UIViewController{
         fatalError("init(coder:) has not been implemented")
     }
     
-    var feed = FeedModel()
+//    var feed = FeedModel()
     
-    var post = Post(title: "Post")
+    
     
    private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -74,37 +76,16 @@ class FeedViewController: UIViewController{
         stackView.addArrangedSubview(button1)
         stackView.addArrangedSubview(button2)
         
-        NSLayoutConstraint.activate([
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.widthAnchor.constraint(equalToConstant: 150),
-            
-            textField.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            textField.heightAnchor.constraint(equalToConstant: 50),
-            
-            checkGuessButton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 20),
-            checkGuessButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            checkGuessButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            checkGuessButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            colorLabel.topAnchor.constraint(equalTo: checkGuessButton.bottomAnchor, constant: 20),
-            colorLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            colorLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            colorLabel.heightAnchor.constraint(equalToConstant: 50)
-        ])
+        viewModel?.setupFeedLayot(stackView: stackView, textField: textField, checkGuessButton: checkGuessButton, colorLabel: colorLabel)
     }
     //MARK: функция, которая выводит текст
     func tapTextFeild() {
-        print(feed.check(word: textField.text!) )
+        print(viewModel?.check(word: textField.text!) as Any )
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
         constraints()
-        title = "First Text"
         
         //MARK: tapAction
         checkGuessButton.tapAction = {[weak self] in
@@ -149,8 +130,8 @@ class FeedViewController: UIViewController{
     }
     
     @objc func showDetailController() {
-        let exampleViewController = PostViewController()
-        navigationController?.pushViewController(exampleViewController, animated: true)
+        let coordinator = PostViewCoordinator()
+        coordinator.showDeatils(navCon: navigationController, coordinator: coordinator)
     }
     
     

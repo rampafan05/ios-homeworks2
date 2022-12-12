@@ -147,9 +147,9 @@ class LoginViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+       
         // MARK: NAVIGATION BAR
-        navigationController?.navigationBar.isHidden = true
+//        navigationController?.navigationBar.isHidden = true
         layotLogin()
     }
     
@@ -204,11 +204,11 @@ class LoginViewController: UIViewController{
         let userService = TestUserService()
 #endif
 //MARK: проверка Логина и Пароля, введенного пользователем с помощью loginDelegate
-        let profileVC = ProfileViewController(userService: userService, login: login.text!)
+        let profileCoord = ProfileCoordinator()
 
         if loginDelegate?.check(login.text!, password.text!) == true {
             login.text = userService.user.fullName
-            navigationController?.pushViewController(profileVC, animated: true)
+            profileCoord.showDetils(navCon: navigationController, coordinator: profileCoord)
         } else {
             let alert = UIAlertController(title: "⚠️Внимание⚠️", message: "Логин введен не верно попробуйте снова", preferredStyle: .alert)
             let ok = UIAlertAction(title: "ОК", style: .destructive, handler: { _ in

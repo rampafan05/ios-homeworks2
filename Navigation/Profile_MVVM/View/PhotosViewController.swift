@@ -44,6 +44,7 @@ var  imagePublisherFacade =  ImagePublisherFacade()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        setupNavigationBar()
         //MARK: Подписка на изменения
         imagePublisherFacade.subscribe(self)
         imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 15)

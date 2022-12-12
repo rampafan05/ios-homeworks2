@@ -9,12 +9,26 @@ import UIKit
 
 class PostViewController: UIViewController {
 
+    private let coordinator: PostViewCoordinator?
+    
+    init(coordinator: PostViewCoordinator){
+        
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    
 
     // срабатывает после загрузки вью
     override func viewDidLoad() {
         super.viewDidLoad()
         print(#function)
-        view.backgroundColor = .white
+//        view.backgroundColor = .white
         lable1()
         burbiten()
         // Do any additional setup after loading the view.
@@ -39,8 +53,8 @@ class PostViewController: UIViewController {
     
     
     @objc func infoView() {
-            let infoView = InfoView()
-        present(infoView, animated: true)
+            let coordinator = InfoViewCoordinator()
+        coordinator.showDeatils(navCon: navigationController, coordinator: coordinator)
     
         }
 

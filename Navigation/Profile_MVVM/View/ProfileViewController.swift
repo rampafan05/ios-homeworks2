@@ -9,11 +9,14 @@ import UIKit
 import StorageService
 
 class ProfileViewController: UIViewController {
+    
+    private let coordinator: ProfileCoordinator?
 
     private var userService: UserService?
     private var login: String
     
-    init (userService: UserService, login: String) {
+    init (userService: UserService, login: String, coordinator: ProfileCoordinator) {
+        self.coordinator = coordinator
         self.userService = userService
         self.login = login
         super.init(nibName: nil, bundle: nil)
@@ -56,14 +59,14 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
        
         super.viewDidLoad()
-        view.backgroundColor = .systemGray6
+//        view.backgroundColor = .systemGray6
         headerLayot()
-        title = "Profile"
-        // MARK: NAVIGATION BAR
-        navigationController?.navigationBar.isHidden = false
-        navigationItem.hidesBackButton = true
-        navigationController?.navigationItem.largeTitleDisplayMode = .never
-        navigationController?.navigationBar.prefersLargeTitles = false
+//        title = "Profile"
+//        // MARK: NAVIGATION BAR
+//        navigationController?.navigationBar.isHidden = false
+//        navigationItem.hidesBackButton = true
+//        navigationController?.navigationItem.largeTitleDisplayMode = .never
+//        navigationController?.navigationBar.prefersLargeTitles = false
         print(#function)
     }
     

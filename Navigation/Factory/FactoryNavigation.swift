@@ -38,11 +38,12 @@ final class FactoryNavigation {
     func startModule() {
         switch flow {
         case .feed:
-//            let feedViewModel = FeedViewModel()
+            let feedViewModel = FeedModel()
             let feedCoordinator = FeedCoordinator()
-            let feedVC = FeedViewController(coordinator: feedCoordinator)
+            let feedVC = feedCoordinator.showDeatils(coordinator: feedCoordinator)
             navigationController.tabBarItem = item1
             navigationController.setViewControllers([feedVC], animated: false)
+            
         case .login:
            let loginCoordinator = LoginCoordinator()
             let loginVC = LoginViewController(coordinator: loginCoordinator)
