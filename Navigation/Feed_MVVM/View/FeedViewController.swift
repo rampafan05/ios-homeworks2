@@ -10,10 +10,10 @@ import UIKit
 class FeedViewController: UIViewController{
     
     private let coordinator: FeedCoordinator?
-    private let viewModel: FeedModel?
+    private let viewModel: FeedViewModel?
     
     init(
-        viewModel: FeedModel,
+        viewModel: FeedViewModel,
         coordinator: FeedCoordinator
     ) {
         self.viewModel = viewModel
@@ -80,7 +80,7 @@ class FeedViewController: UIViewController{
     }
     //MARK: функция, которая выводит текст
     func tapTextFeild() {
-        print(viewModel?.check(word: textField.text!) as Any )
+        print(viewModel?.feedModel?.check(word: textField.text!) as Any )
     }
     
     override func viewDidLoad() {

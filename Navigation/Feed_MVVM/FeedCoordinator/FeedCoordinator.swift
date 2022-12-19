@@ -11,8 +11,8 @@ import UIKit
 final class FeedCoordinator {
     
     func showDeatils(coordinator: FeedCoordinator) -> UIViewController {
-        
-        let viewModel = FeedModel()
+        let feedModel = FeedModel()
+        let viewModel = FeedViewModel(feedModel: feedModel)
         let vc = FeedViewController(viewModel: viewModel,coordinator: coordinator)
         vc.view.backgroundColor = .lightGray
         vc.title = "First Text"

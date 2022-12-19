@@ -8,13 +8,16 @@
 import UIKit
 import iOSIntPackage
 
-class PhotosViewController: UIViewController , ImageLibrarySubscriber{
+class PhotosViewController: UIViewController {
  
     //MARK: Экземпляр класса ImagePublisherFacade()
 var  imagePublisherFacade =  ImagePublisherFacade()
  //MARK: Создал экземпляр класса UIIMAGE
     var newPhotos = [UIImage]()
   
+   private var imageProcessor = ImageProcessor()
+    
+    
     private enum Constant {
         static let numberOfItemsInLine: CGFloat = 3
     }
@@ -40,24 +43,45 @@ var  imagePublisherFacade =  ImagePublisherFacade()
         
         return collectionView
     }()
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupNavigationBar()
+      
+       //MARK: вызов метода processImagesOnThread
+        imageProcessor.processImagesOnThread(sourceImages: arrayImages, filter: .fade, qos: QualityOfService.userInitiated) { cgImages in
+            
+            self.newPhotos =  cgImages.map({UIImage(cgImage: $0!)})
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+            
+           
+                
+            }
+        //MARK: НЕ МОГУ ПОНЯТЬ КАК ВОСПОЛЬЗОВАТЬСЯ ЭТИМ МЕТОДОМ
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {[weak self] timer in
+          
+        }
+        
+      
+    
+        
         //MARK: Подписка на изменения
-        imagePublisherFacade.subscribe(self)
-        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 15)
+//        imagePublisherFacade.subscribe(self)
+//        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 15)
         
         self.setup()
     }
     //MARK: Отмена подписки методом deinit
-    deinit {
-        
-        imagePublisherFacade.removeSubscription(for: self)
-        imagePublisherFacade.rechargeImageLibrary()
-        
-    }
+//    deinit {
+//
+//        imagePublisherFacade.removeSubscription(for: self)
+//        imagePublisherFacade.rechargeImageLibrary()
+//
+//    }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
@@ -92,13 +116,13 @@ var  imagePublisherFacade =  ImagePublisherFacade()
 
 extension PhotosViewController:UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     // MARK: метод протокола ImageLibrarySubscriber
-    func receive(images: [UIImage]) {
-        newPhotos = images
-       collectionView.reloadData()
-    }
+//    func receive(images: [UIImage]) {
+//        newPhotos = images
+//       collectionView.reloadData()
+//    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+       
         return newPhotos.count
     }
     
@@ -107,9 +131,11 @@ extension PhotosViewController:UICollectionViewDataSource,UICollectionViewDelega
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DefaultCell", for: indexPath)
             return cell
         }
-        //MARK: Добавление фото в ячейки коллекции 
-        cell.setConfigureOfCell(photos: newPhotos[indexPath.item])
         
+        
+        //MARK: Добавление фото в ячейки коллекции
+        cell.setConfigureOfCell(photos: newPhotos[indexPath.item])
+
         return cell
     }
     

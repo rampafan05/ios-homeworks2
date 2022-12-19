@@ -1,24 +1,19 @@
 //
-//  FeedModel.swift
+//  FeedViewModel.swift
 //  Navigation
 //
-//  Created by macbook on 03.12.2022.
+//  Created by macbook on 13.12.2022.
 //
 
 import Foundation
 import UIKit
 
-//MARK: Task 6. Part 2.Notitfication Centr Post
-class FeedModel {
+final class FeedViewModel {
     
-    var  secretWord = "Пароль"
+    var feedModel: FeedModel?
     
-    func check(word: String) {
-        if word == secretWord {
-            NotificationCenter.default.post(name: NSNotification.Name("green"), object: nil)
-        } else {
-            NotificationCenter.default.post(name: NSNotification.Name("red"), object: nil)
-        }
+    init(feedModel: FeedModel) {
+        self.feedModel = feedModel
     }
     
     func setupFeedLayot(stackView: UIStackView, textField: UITextField, checkGuessButton: UIButton, colorLabel: UILabel){
@@ -49,8 +44,6 @@ class FeedModel {
             make.height.equalTo(50)
         }
         
-        
     }
     
 }
-          

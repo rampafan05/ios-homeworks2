@@ -48,7 +48,7 @@ class PhotosTableViewCell: UITableViewCell{
   private  lazy var photo_0: UIImageView = {
         
         var  photo_0 = UIImageView()
-        let image = UIImage(named: "photo_0")
+        let image = UIImage(named: "photo_4")
         photo_0.image = image
         photo_0.layer.cornerRadius = 6
         photo_0.clipsToBounds = true
@@ -60,7 +60,7 @@ class PhotosTableViewCell: UITableViewCell{
    private lazy var photo_1: UIImageView = {
         
         var  photo_1 = UIImageView()
-        let image = UIImage(named: "photo_0-1")
+        let image = UIImage(named: "photo_6")
         photo_1.image = image
         photo_1.layer.cornerRadius = 6
         photo_1.clipsToBounds = true
@@ -72,7 +72,7 @@ class PhotosTableViewCell: UITableViewCell{
     private  lazy var photo_2: UIImageView = {
         
         var  photo_2 = UIImageView()
-        let image = UIImage(named: "photo_0-7")
+        let image = UIImage(named: "photo_2")
         photo_2.image = image
         photo_2.layer.cornerRadius = 6
         photo_2.clipsToBounds = true
@@ -85,7 +85,7 @@ class PhotosTableViewCell: UITableViewCell{
     private lazy var photo_3: UIImageView = {
         
         var  photo_3 = UIImageView()
-        let image = UIImage(named: "photo_0-3")
+        let image = UIImage(named: "photo_3")
         photo_3.image = image
         photo_3.layer.cornerRadius = 6
         photo_3.clipsToBounds = true

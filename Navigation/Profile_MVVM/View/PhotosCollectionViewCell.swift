@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PhotosCollectionViewCell: UICollectionViewCell {
     
@@ -17,14 +18,18 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         
         return image
     }()
+//    private var filterImage = ImageProcessor()
     
 //    public func setConfigureOfCell(photos: Photos) {
+//
 //        self.imagePhotosCell.image = UIImage(named: photos.image)
+////
 //    }
      
     public func setConfigureOfCell(photos: UIImage) {
-        
+
         self.imagePhotosCell.image = photos
+        
     }
   
     
