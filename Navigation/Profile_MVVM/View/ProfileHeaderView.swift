@@ -35,6 +35,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
         return labeleWhaiting
     }()
 
+   lazy var imageGestur = UITapGestureRecognizer(target: self, action: #selector(didTapAnimationButton))
+    
     lazy var avatarImageView: UIImageView = {
         
         var catFoto = UIImageView()
@@ -42,6 +44,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
         catFoto.tintColor = .lightGray
         catFoto.backgroundColor = .clear
         catFoto.image = image
+        catFoto.addGestureRecognizer(imageGestur)
         catFoto.layer.cornerRadius = 65
         catFoto.clipsToBounds = true
         catFoto.isUserInteractionEnabled = true
@@ -72,31 +75,24 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
         
         return button 
     }()
+    
+    lazy var crossGestur = UITapGestureRecognizer(target: self, action: #selector(self.closeTapAnimationButton))
+    
     // MARK: CROSS
     lazy var crossImage: UIImageView = {
         
         var  cross = UIImageView()
         let image = UIImage(systemName: "xmark.circle")
         cross.image = image
+        cross.addGestureRecognizer(crossGestur)
         cross.tintColor = .black
+        cross.isUserInteractionEnabled = true
         cross.isHidden = true
         cross.translatesAutoresizingMaskIntoConstraints = false
         
         return cross
     }()
-    //MARK: Button Avatar
-    private lazy var crossButton: UIButton = {
-        
-        let button = UIButton()
-        button.layer.cornerRadius = 25
-        button.clipsToBounds = true
-        button.isHidden = true
-        button.addTarget(self, action: #selector(self.closeTapAnimationButton), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
-    }()
-    
+  
     private lazy var transparentView: UIView = {
         
         let view = UIView()
@@ -106,17 +102,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
-    }()
-    
-    private lazy var animationAvatarButton: UIButton = {
-        
-        let button = UIButton()
-        button.layer.cornerRadius = 65
-        button.clipsToBounds = true
-        button.addTarget(self, action: #selector(self.didTapAnimationButton), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
     }()
 
     private var statusTextT: String = ""
@@ -147,8 +132,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         addSubViews()
-//        contentView.addSubviews(fullNameLabel,setButtonSetStatus,statusTextField,statusLable,transparentView,crossImage,crossButton,avatarImageView,animationAvatarButton)
-//        layout()
         
     }
     
@@ -202,9 +185,9 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
     private func closeCrossAnimation(completion: @escaping () -> Void) {
         
         UIView.animate(withDuration: 0.1, delay: 0.0) {
-            self.crossButton.alpha = 0
+            self.crossImage.alpha = 0
         } completion: { _ in
-            self.crossButton.isHidden = true
+//            self.crossButton.isHidden = true
             self.crossImage.isHidden = true
             completion()
             
@@ -258,9 +241,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
     private func crossAnimation(completion: @escaping () -> Void) {
         
         UIView.animate(withDuration: 1.5, delay: 0.0) {
-            self.crossButton.alpha = 2
+            self.crossImage.alpha = 2
         } completion: { _ in
-            self.crossButton.isHidden = false
             self.crossImage.isHidden = false
             completion()
             
@@ -271,25 +253,23 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
 
     func addSubViews() -> Void {
 
-            self.addSubview(self.fullNameLabel)
+        self.addSubview(self.fullNameLabel)
         self.addSubview(self.setButtonSetStatus)
         self.addSubview(self.statusTextField)
         self.addSubview(self.statusLable)
         self.addSubview(self.transparentView)
         self.addSubview(self.crossImage)
-        self.addSubview(self.crossButton)
-           self.addSubview(self.avatarImageView)
-        self.addSubview(self.animationAvatarButton)
+        self.addSubview(self.avatarImageView)
+        
+        
 
-
-
-            self.fullNameLabel.snp.makeConstraints { (make) in
-                make.leading.equalTo(self.avatarImageView.snp.trailing).offset(16)
-                make.top.equalToSuperview().offset(35)
-                make.height.equalTo(50)
-                make.width.equalTo(180)
-            }
-
+        self.fullNameLabel.snp.makeConstraints { (make) in
+            make.leading.equalTo(self.avatarImageView.snp.trailing).offset(16)
+            make.top.equalToSuperview().offset(35)
+            make.height.equalTo(50)
+            make.width.equalTo(180)
+        }
+        
         self.statusLable.snp.makeConstraints { (make) in
             make.leading.equalTo(self.avatarImageView.snp.trailing).offset(16)
             make.top.equalTo(self.statusTextField.snp.top).offset(-65)
@@ -312,13 +292,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
             make.width.equalTo(130)
         }
 
-        self.crossButton.snp.makeConstraints { (make) in
-            make.trailing.equalToSuperview().offset(-25)
-            make.top.equalToSuperview().offset(1)
-            make.height.equalTo(50)
-            make.width.equalTo(50)
-        }
-
         self.crossImage.snp.makeConstraints { (make) in
             make.trailing.equalToSuperview().offset(-25)
             make.top.equalToSuperview().offset(1)
@@ -326,12 +299,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
             make.width.equalTo(50)
         }
 
-        self.animationAvatarButton.snp.makeConstraints { (make) in
-            make.leading.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(30)
-            make.height.equalTo(130)
-            make.width.equalTo(130)
-        }
 
         self.setButtonSetStatus.snp.makeConstraints { (make) in
             make.leading.equalToSuperview().offset(16)
@@ -356,10 +323,10 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
     
     @objc private func didTapAnimationButton() {
         
-        self.animationAvatarButton.isEnabled = false
+        self.imageGestur.isEnabled = false
         
         let completion: () -> Void = { [weak self] in
-            self?.animationAvatarButton.isEnabled = true
+            self?.imageGestur.isEnabled = true
         }
         
         self.transparentViewAnimation(completion: completion)
@@ -371,10 +338,10 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
     
     @objc private func closeTapAnimationButton() {
         
-        self.crossButton.isEnabled = false
+        self.crossGestur.isEnabled = false
 
         let completion: () -> Void = { [weak self] in
-            self?.crossButton.isEnabled = true
+            self?.crossGestur.isEnabled = true
         }
 
         self.closeAvatar(completion: completion)

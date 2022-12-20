@@ -50,7 +50,7 @@ var  imagePublisherFacade =  ImagePublisherFacade()
         setupNavigationBar()
       
        //MARK: вызов метода processImagesOnThread
-        imageProcessor.processImagesOnThread(sourceImages: arrayImages, filter: .fade, qos: QualityOfService.userInitiated) { cgImages in
+        imageProcessor.processImagesOnThread(sourceImages: arrayImages, filter: .fade, qos: QualityOfService.userInteractive) { cgImages in
             
             self.newPhotos =  cgImages.map({UIImage(cgImage: $0!)})
             
@@ -58,17 +58,16 @@ var  imagePublisherFacade =  ImagePublisherFacade()
                 self.collectionView.reloadData()
             }
             
-           
-                
+            let startDate = Date()
+            //background      : 6.079673767089844e-06
+            //default         : 2.9802322387695312e-06
+            //userInitiated   : 3.933906555175781e-06
+            //utility         : 2.9802322387695312e-06
+            //userInteractive : 4.0531158447265625e-06
+            print("Process time:  \(Date().timeIntervalSince(startDate)) seconds")
+
             }
-        //MARK: НЕ МОГУ ПОНЯТЬ КАК ВОСПОЛЬЗОВАТЬСЯ ЭТИМ МЕТОДОМ
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {[weak self] timer in
-          
-        }
-        
-      
-    
-        
+ 
         //MARK: Подписка на изменения
 //        imagePublisherFacade.subscribe(self)
 //        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 15)
