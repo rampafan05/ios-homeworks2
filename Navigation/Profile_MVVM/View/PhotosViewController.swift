@@ -43,37 +43,40 @@ var  imagePublisherFacade =  ImagePublisherFacade()
         
         return collectionView
     }()
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupNavigationBar()
-      
+       
+       //MARK: Начало отсчета
+       let startTime = CFAbsoluteTimeGetCurrent()
+       
        //MARK: вызов метода processImagesOnThread
-        imageProcessor.processImagesOnThread(sourceImages: arrayImages, filter: .fade, qos: QualityOfService.userInteractive) { cgImages in
+        imageProcessor.processImagesOnThread(sourceImages: arrayImages, filter: .fade, qos: QualityOfService.default) { cgImages in
             
             self.newPhotos =  cgImages.map({UIImage(cgImage: $0!)})
-            
+
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
+                
             }
-            
-            let startDate = Date()
-            //background      : 6.079673767089844e-06
-            //default         : 2.9802322387695312e-06
-            //userInitiated   : 3.933906555175781e-06
-            //utility         : 2.9802322387695312e-06
-            //userInteractive : 4.0531158447265625e-06
-            print("Process time:  \(Date().timeIntervalSince(startDate)) seconds")
-
+            //MARK: Конец отсчета
+            let endTime = CFAbsoluteTimeGetCurrent()
+            print("Elapsed time is \(endTime - startTime) seconds")
+//            //background      : 6.304984927177429
+//            //default         : 4.5108360052108765
+//            //utility         : 4.477325081825256
             }
- 
+      
         //MARK: Подписка на изменения
 //        imagePublisherFacade.subscribe(self)
 //        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 15)
-        
+       
         self.setup()
     }
+    
+   
     //MARK: Отмена подписки методом deinit
 //    deinit {
 //
