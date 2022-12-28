@@ -38,7 +38,7 @@ final class FactoryNavigation {
     func startModule() {
         switch flow {
         case .feed:
-            let feedViewModel = FeedModel()
+//            let feedViewModel = FeedModel()
             let feedCoordinator = FeedCoordinator()
             let feedVC = feedCoordinator.showDeatils(coordinator: feedCoordinator)
             navigationController.tabBarItem = item1

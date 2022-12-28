@@ -76,7 +76,7 @@ class LoginViewController: UIViewController{
     
     private lazy var password: UITextField = {
         var textField = UITextField()
-        textField.text = "1" // на время
+//        textField.text = "1" // на время
         textField.placeholder = "Password"
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.leftViewMode = .always
@@ -86,7 +86,7 @@ class LoginViewController: UIViewController{
         textField.font = .systemFont(ofSize: 16, weight: .regular)
         textField.tintColor = UIColor.tintColor
         textField.autocorrectionType = .no
-        textField.isSecureTextEntry = true
+        textField.isSecureTextEntry = false
         textField.translatesAutoresizingMaskIntoConstraints = false
         
         return textField
@@ -96,7 +96,6 @@ class LoginViewController: UIViewController{
         var buttonLogIn = UIButton()
         buttonLogIn.setTitle("Log In", for: .normal)
         buttonLogIn.setTitleColor(UIColor.white, for: .normal)
-        buttonLogIn.backgroundColor = .systemBlue
         buttonLogIn.layer.cornerRadius = 14
         buttonLogIn.clipsToBounds = true
         buttonLogIn.backgroundColor = UIColor(red: 70/255.0, green: 128/255.0, blue: 194/255.0, alpha: 1.0)
@@ -105,14 +104,23 @@ class LoginViewController: UIViewController{
         
         return buttonLogIn
     }()
+    //MARK: Кнопка для подбора пароля
+    private lazy var buttonBruteForce = CustomButton(title: "Подобрать пароль", bgColor: UIColor(red: 70/255.0, green: 128/255.0, blue: 194/255.0, alpha: 1.0))
     
     private var login1: String?
     
     func layotLogin() {
+        
+        buttonBruteForce.tapAction = {[weak self] in
+            guard let self = self else {return}
+            self.passwordSelection()
+        }
+        
         view.addSubview(iconVK)
         self.setupGestures()
         self.view.addSubview(self.scrollView)
         self.scrollView.addSubview(self.buttonLogIn)
+        self.scrollView.addSubview(self.buttonBruteForce)
         self.scrollView.addSubview(self.stackView)
         self.stackView.addArrangedSubview(self.login)
         self.stackView.addArrangedSubview(self.password)
@@ -142,12 +150,44 @@ class LoginViewController: UIViewController{
             buttonLogIn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             buttonLogIn.heightAnchor.constraint(equalToConstant: 50),
             
+            buttonBruteForce.topAnchor.constraint(equalTo: self.buttonLogIn.bottomAnchor, constant: 16),
+            buttonBruteForce.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            buttonBruteForce.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            buttonBruteForce.heightAnchor.constraint(equalToConstant: 50),
+            
         ])
     }
+    //MARK: Функция реализации BruteForce
+    func passwordSelection() {
+       let bruteForce = BruteForce()
+       var pass : String  = ""
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        password.leftView = activityIndicator
+        self.view.addSubview(activityIndicator)
+        self.password.placeholder = "Password Selection"
+        self.password.isSecureTextEntry = true
+        activityIndicator.startAnimating()
+        DispatchQueue.global().async { [self] in
+           pass = bruteForce.bruteForce(passwordToUnlock: "1234")
+          
+          DispatchQueue.main.sync {
+               self.password.text = pass
+              self.password.placeholder = "Password"
+              self.password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.password.frame.height))
+              self.password.leftViewMode = .always
+              self.password.isSecureTextEntry = false
+              activityIndicator.stopAnimating()
+            
+          }
+       }
+   }
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
        
+      
         // MARK: NAVIGATION BAR
 //        navigationController?.navigationBar.isHidden = true
         layotLogin()
@@ -176,11 +216,11 @@ class LoginViewController: UIViewController{
             let keyboardHeight = keyboardRectangle.height
             
             let loginButtonBottomPointY = self.stackView.frame.origin.y +
-            self.password.frame.origin.y + self.password.frame.height + self.buttonLogIn.frame.height
+            self.password.frame.origin.y + self.password.frame.height + self.buttonLogIn.frame.height + self.buttonBruteForce.frame.height  
             
             let keyboardOriginY = self.view.frame.height - keyboardHeight
             let yOffset = keyboardOriginY < loginButtonBottomPointY
-            ? loginButtonBottomPointY - keyboardOriginY + 32
+            ? loginButtonBottomPointY - keyboardOriginY + 40
             : 0
             
             self.scrollView.contentOffset = CGPoint(x: 0, y: yOffset)
