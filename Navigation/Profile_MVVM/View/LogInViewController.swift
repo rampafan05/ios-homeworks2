@@ -157,7 +157,7 @@ class LoginViewController: UIViewController{
             
         ])
     }
-    //MARK: Функция реализации BruteForce
+    //MARK: Функция реализации BruteForce.
     func passwordSelection() {
        let bruteForce = BruteForce()
        var pass : String  = ""
