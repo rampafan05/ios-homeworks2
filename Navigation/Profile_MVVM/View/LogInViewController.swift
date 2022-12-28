@@ -21,7 +21,7 @@ class LoginViewController: UIViewController{
     }
     
     var loginDelegate: LoginViewControllerDelegate?
-
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +38,7 @@ class LoginViewController: UIViewController{
         stackView.layer.borderWidth = 0.5
         stackView.layer.borderColor = UIColor.lightGray.cgColor
         stackView.clipsToBounds = true
-                stackView.distribution = .fillEqually
+        stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         return stackView
@@ -67,7 +67,7 @@ class LoginViewController: UIViewController{
         textField.font = .systemFont(ofSize: 16, weight: .regular)
         textField.tintColor = UIColor.tintColor
         textField.autocorrectionType = .no
-//        textField.keyboardType = .phonePad
+        //        textField.keyboardType = .phonePad
         textField.clearButtonMode = .whileEditing
         textField.translatesAutoresizingMaskIntoConstraints = false
         
@@ -76,7 +76,7 @@ class LoginViewController: UIViewController{
     
     private lazy var password: UITextField = {
         var textField = UITextField()
-//        textField.text = "1" // на время
+        //        textField.text = "1" // на время
         textField.placeholder = "Password"
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.leftViewMode = .always
@@ -124,10 +124,10 @@ class LoginViewController: UIViewController{
         self.scrollView.addSubview(self.stackView)
         self.stackView.addArrangedSubview(self.login)
         self.stackView.addArrangedSubview(self.password)
-      
+        
         
         NSLayoutConstraint.activate([
-     
+            
             iconVK.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
             iconVK.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             iconVK.widthAnchor.constraint(equalToConstant: 100),
@@ -159,8 +159,8 @@ class LoginViewController: UIViewController{
     }
     //MARK: Функция реализации BruteForce.
     func passwordSelection() {
-       let bruteForce = BruteForce()
-       var pass : String  = ""
+        let bruteForce = BruteForce()
+        var pass : String  = ""
         let activityIndicator = UIActivityIndicatorView(style: .medium)
         password.leftView = activityIndicator
         self.view.addSubview(activityIndicator)
@@ -168,28 +168,28 @@ class LoginViewController: UIViewController{
         self.password.isSecureTextEntry = true
         activityIndicator.startAnimating()
         DispatchQueue.global().async { [self] in
-           pass = bruteForce.bruteForce(passwordToUnlock: "1234")
-          
-          DispatchQueue.main.sync {
-               self.password.text = pass
-              self.password.placeholder = "Password"
-              self.password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.password.frame.height))
-              self.password.leftViewMode = .always
-              self.password.isSecureTextEntry = false
-              activityIndicator.stopAnimating()
+            pass = bruteForce.bruteForce(passwordToUnlock: "1!ggsdfgdsfg3")
             
-          }
-       }
-   }
-   
+            DispatchQueue.main.sync {
+                self.password.text = pass
+                self.password.placeholder = "Password"
+                self.password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.password.frame.height))
+                self.password.leftViewMode = .always
+                self.password.isSecureTextEntry = false
+                activityIndicator.stopAnimating()
+                
+            }
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
-      
+        
+        
         // MARK: NAVIGATION BAR
-//        navigationController?.navigationBar.isHidden = true
+        //        navigationController?.navigationBar.isHidden = true
         layotLogin()
     }
     
@@ -216,7 +216,7 @@ class LoginViewController: UIViewController{
             let keyboardHeight = keyboardRectangle.height
             
             let loginButtonBottomPointY = self.stackView.frame.origin.y +
-            self.password.frame.origin.y + self.password.frame.height + self.buttonLogIn.frame.height + self.buttonBruteForce.frame.height  
+            self.password.frame.origin.y + self.password.frame.height + self.buttonLogIn.frame.height + self.buttonBruteForce.frame.height
             
             let keyboardOriginY = self.view.frame.height - keyboardHeight
             let yOffset = keyboardOriginY < loginButtonBottomPointY
@@ -243,9 +243,9 @@ class LoginViewController: UIViewController{
 #else
         let userService = TestUserService()
 #endif
-//MARK: проверка Логина и Пароля, введенного пользователем с помощью loginDelegate
+        //MARK: проверка Логина и Пароля, введенного пользователем с помощью loginDelegate
         let profileCoord = ProfileCoordinator()
-
+        
         if loginDelegate?.check(login.text!, password.text!) == true {
             login.text = userService.user.fullName
             profileCoord.showDetils(navCon: navigationController, coordinator: profileCoord)
