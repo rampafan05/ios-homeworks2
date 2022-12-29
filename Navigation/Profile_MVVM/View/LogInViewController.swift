@@ -157,8 +157,16 @@ class LoginViewController: UIViewController{
             
         ])
     }
+    
     //MARK: Функция реализации BruteForce.
     func passwordSelection() {
+        //MARK: Алгоритм подбора пароля
+        let numberOfLetters = 3
+        let randomLetters = "qweerrADFF1234"
+        let randomPassword = String((0..<numberOfLetters).compactMap({ _ in
+            randomLetters.randomElement()
+        }))
+        //MARK: Brute Force
         let bruteForce = BruteForce()
         var pass : String  = ""
         let activityIndicator = UIActivityIndicatorView(style: .medium)
@@ -167,18 +175,25 @@ class LoginViewController: UIViewController{
         self.password.placeholder = "Password Selection"
         self.password.isSecureTextEntry = true
         activityIndicator.startAnimating()
+        let startTime = CFAbsoluteTimeGetCurrent()
+        
         DispatchQueue.global().async { [self] in
-            pass = bruteForce.bruteForce(passwordToUnlock: "1!ggsdfgdsfg3")
+            
+            pass = bruteForce.bruteForce(passwordToUnlock: randomPassword)
             
             DispatchQueue.main.sync {
+                
                 self.password.text = pass
                 self.password.placeholder = "Password"
                 self.password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.password.frame.height))
                 self.password.leftViewMode = .always
                 self.password.isSecureTextEntry = false
                 activityIndicator.stopAnimating()
-                
             }
+            
+            let endTime = CFAbsoluteTimeGetCurrent()
+            print("Elapsed time is \(endTime - startTime) seconds")
+            
         }
     }
     
