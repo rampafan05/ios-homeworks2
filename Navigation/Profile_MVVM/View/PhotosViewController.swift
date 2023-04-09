@@ -9,13 +9,13 @@ import UIKit
 import iOSIntPackage
 
 class PhotosViewController: UIViewController {
- 
+    
     //MARK: Экземпляр класса ImagePublisherFacade()
-var  imagePublisherFacade =  ImagePublisherFacade()
- //MARK: Создал экземпляр класса UIIMAGE
+    var  imagePublisherFacade =  ImagePublisherFacade()
+    //MARK: Создал экземпляр класса UIIMAGE
     var newPhotos = [UIImage]()
-  
-   private var imageProcessor = ImageProcessor()
+    
+    private var imageProcessor = ImageProcessor()
     
     
     private enum Constant {
@@ -48,42 +48,35 @@ var  imagePublisherFacade =  ImagePublisherFacade()
         super.viewDidLoad()
         view.backgroundColor = .white
         setupNavigationBar()
-       
-       //MARK: Начало отсчета
-       let startTime = CFAbsoluteTimeGetCurrent()
-       
-       //MARK: вызов метода processImagesOnThread
+        self.setup()
+        //MARK: Начало отсчета
+        let startTime = CFAbsoluteTimeGetCurrent()
+        //MARK: вызов метода processImagesOnThread
         imageProcessor.processImagesOnThread(sourceImages: arrayImages, filter: .fade, qos: QualityOfService.default) { cgImages in
             
             self.newPhotos =  cgImages.map({UIImage(cgImage: $0!)})
-
+            
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
-                
             }
             //MARK: Конец отсчета
             let endTime = CFAbsoluteTimeGetCurrent()
             print("Elapsed time is \(endTime - startTime) seconds")
-//            //background      : 6.304984927177429
-//            //default         : 4.5108360052108765
-//            //utility         : 4.477325081825256
-            }
-      
+            //            //background      : 6.304984927177429
+            //            //default         : 4.5108360052108765
+            //            //utility         : 4.477325081825256
+        }
+        
         //MARK: Подписка на изменения
-//        imagePublisherFacade.subscribe(self)
-//        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 15)
-       
-        self.setup()
+        //        imagePublisherFacade.subscribe(self)
+        //        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 15)
     }
     
-   
     //MARK: Отмена подписки методом deinit
-//    deinit {
-//
-//        imagePublisherFacade.removeSubscription(for: self)
-//        imagePublisherFacade.rechargeImageLibrary()
-//
-//    }
+    //    deinit {
+    //        imagePublisherFacade.removeSubscription(for: self)
+    //        imagePublisherFacade.rechargeImageLibrary()
+    //    }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
@@ -105,7 +98,7 @@ var  imagePublisherFacade =  ImagePublisherFacade()
         
         NSLayoutConstraint.activate([
             
-            self.collectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             self.collectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             self.collectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
@@ -118,13 +111,13 @@ var  imagePublisherFacade =  ImagePublisherFacade()
 
 extension PhotosViewController:UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     // MARK: метод протокола ImageLibrarySubscriber
-//    func receive(images: [UIImage]) {
-//        newPhotos = images
-//       collectionView.reloadData()
-//    }
+    //    func receive(images: [UIImage]) {
+    //        newPhotos = images
+    //       collectionView.reloadData()
+    //    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       
+        
         return newPhotos.count
     }
     
@@ -137,7 +130,7 @@ extension PhotosViewController:UICollectionViewDataSource,UICollectionViewDelega
         
         //MARK: Добавление фото в ячейки коллекции
         cell.setConfigureOfCell(photos: newPhotos[indexPath.item])
-
+        
         return cell
     }
     

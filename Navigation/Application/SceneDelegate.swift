@@ -19,7 +19,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         UITabBar.appearance().tintColor = UIColor(red: 4/255.0, green: 91/255.0, blue: 242/255.0, alpha: 1.0)
                 UITabBar.appearance().backgroundColor = .lightText
-        
 //        let navVC = UINavigationController()
         self.window = UIWindow(windowScene: windowScene)
         let coordinator : MainCoordinator = MainCoordinatorImp()

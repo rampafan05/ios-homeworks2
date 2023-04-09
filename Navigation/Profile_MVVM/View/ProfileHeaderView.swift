@@ -8,9 +8,9 @@
 import UIKit
 import SnapKit
 class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
-
-
-  
+    
+     var centerAvatar = CGPoint()
+    
     lazy var fullNameLabel: UILabel = {
         
         let labelName = UILabel()
@@ -19,10 +19,10 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
         labelName.font = UIFont.boldSystemFont(ofSize: 18)
         labelName.textColor = UIColor.black
         labelName.translatesAutoresizingMaskIntoConstraints = false
-
+        
         return labelName
     }()
-
+    
     lazy var statusLable: UILabel = {
         
         let labeleWhaiting = UILabel()
@@ -31,11 +31,11 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
         labeleWhaiting.numberOfLines = 3
         labeleWhaiting.font = UIFont.boldSystemFont(ofSize: 15)
         labeleWhaiting.translatesAutoresizingMaskIntoConstraints = false
-
+        
         return labeleWhaiting
     }()
-
-   lazy var imageGestur = UITapGestureRecognizer(target: self, action: #selector(didTapAnimationButton))
+    
+    lazy var imageGestur = UITapGestureRecognizer(target: self, action: #selector(tapToAvatar))
     
     lazy var avatarImageView: UIImageView = {
         
@@ -51,14 +51,14 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
         catFoto.layer.borderColor = UIColor.white.cgColor
         catFoto.layer.borderWidth = 5
         catFoto.translatesAutoresizingMaskIntoConstraints = false
-
+        
         return catFoto
     }()
-
-    lazy var setButtonSetStatus: UIButton = {
-       //MARK: Заменил обычный UIButton на кастомный 
     
-       var button = UIButton(type: .roundedRect)
+    lazy var setButtonSetStatus: UIButton = {
+        //MARK: Заменил обычный UIButton на кастомный
+        
+        var button = UIButton(type: .roundedRect)
         button.setTitle("Button", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 14
@@ -73,10 +73,10 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         button.isUserInteractionEnabled = true
         
-        return button 
+        return button
     }()
     
-    lazy var crossGestur = UITapGestureRecognizer(target: self, action: #selector(self.closeTapAnimationButton))
+    lazy var crossGestur = UITapGestureRecognizer(target: self, action: #selector(self.closeButtonTapped))
     
     // MARK: CROSS
     lazy var crossImage: UIImageView = {
@@ -92,7 +92,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
         
         return cross
     }()
-  
+    
     private lazy var transparentView: UIView = {
         
         let view = UIView()
@@ -103,9 +103,9 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
         
         return view
     }()
-
+    
     private var statusTextT: String = ""
-
+    
     lazy var statusTextField: UITextField = {
         
         let textField = UITextField()
@@ -124,11 +124,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
         return textField
     }()
     
- 
-    
-    
-    
-
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         addSubViews()
@@ -139,120 +134,13 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: Закрытие аватара
-    private func closeAvatar(completion: @escaping () -> Void) {
-        
-        let startPoint = self.avatarImageView.center
-        
-        UIView.animate(withDuration: 0.3, delay: 0.0) {
-            self.avatarImageView.clipsToBounds = true
-        } completion: { _ in
-            //MARK: Доп. задание
-            UIView.animate(withDuration: 0.2, delay: 0.0) {
-                self.avatarImageView.layer.borderWidth = 5
-            } completion: { _ in
-                UIView.animate(withDuration: 0.3, delay: 0.0) {
-                    self.avatarImageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                } completion: { _ in
-                    UIView.animate(withDuration: 0.3, delay: 0.0) {
-                        self.avatarImageView.center = CGPoint(x: startPoint.x - 126, y: startPoint.y - 170)
-                    }
-                }
-            }
-        }
-    }
     
-    
-    //MARK: Закрытие прозрачное View
-    private func closeTransparent(completion: @escaping () -> Void) {
-        
-        let startPoint = self.transparentView.center
-        
-        UIView.animate(withDuration: 0.3, delay: 0.0) {
-            self.transparentView.alpha = 0.0
-        } completion: { _ in
-            UIView.animate(withDuration: 0.3, delay: 0.0) {
-                self.transparentView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            } completion: { _ in
-                UIView.animate(withDuration: 0.3, delay: 0.0) {
-                    self.transparentView.center = CGPoint(x: startPoint.x - 126, y: startPoint.y - 170)
-                }
-            }
-        }
-    }
-    
-    //MARK: Закрытие кнопки - крестик
-    private func closeCrossAnimation(completion: @escaping () -> Void) {
-        
-        UIView.animate(withDuration: 0.1, delay: 0.0) {
-            self.crossImage.alpha = 0
-        } completion: { _ in
-//            self.crossButton.isHidden = true
-            self.crossImage.isHidden = true
-            completion()
-            
-        }
-    }
-    
-    //MARK: Анимация открытия прозрачной View
-    private func transparentViewAnimation(completion: @escaping () -> Void) {
-        
-        let startPoint = self.avatarImageView.center
-        
-        UIView.animate(withDuration: 0.5, delay: 0.0) {
-            self.transparentView.center = CGPoint(x: startPoint.x + 126, y: startPoint.y + 170)
-        } completion: { _ in
-            UIView.animate(withDuration: 0.5, delay: 0.0) {
-                self.transparentView.transform = CGAffineTransform(scaleX: 50.0, y: 50.0)
-            } completion: { _ in
-                UIView.animate(withDuration: 0.5, delay: 0.0) {
-                    self.transparentView.alpha = 0.9
-                    completion()
-                }
-            }
-        }
-        
-    }
-    //MARK: Анимация открытия аватара
-    private func avatarAnimation(completion: @escaping () -> Void) {
-        
-        let startPoint = self.avatarImageView.center
-        
-        UIView.animate(withDuration: 0.5, delay: 0.0) {
-            self.avatarImageView.center = CGPoint(x: startPoint.x + 126, y: startPoint.y + 170)
-        } completion: { _ in
-            UIView.animate(withDuration: 0.5, delay: 0.0) {
-                self.avatarImageView.transform = CGAffineTransform(scaleX: 2.5, y: 2.5)
-            }completion: { _ in
-                //MARK: Доп. задание
-                UIView.animate(withDuration: 0.4, delay: 0.0) {
-                    self.avatarImageView.layer.borderWidth = 0
-                }completion: { _ in
-                    UIView.animate(withDuration: 0.5, delay: 0.0) {
-                        self.avatarImageView.clipsToBounds = false
-                        completion()
-                    }
-                    
-                }
-            }
-        }
-    }
-    //MARK: Анимация открытия кнопки-крестик
-    private func crossAnimation(completion: @escaping () -> Void) {
-        
-        UIView.animate(withDuration: 1.5, delay: 0.0) {
-            self.crossImage.alpha = 2
-        } completion: { _ in
-            self.crossImage.isHidden = false
-            completion()
-            
-        }
-    }
-    
-   //MARK: SnapKit верстка
 
+    
+    //MARK: SnapKit верстка
+    
     func addSubViews() -> Void {
-
+        
         self.addSubview(self.fullNameLabel)
         self.addSubview(self.setButtonSetStatus)
         self.addSubview(self.statusTextField)
@@ -262,7 +150,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
         self.addSubview(self.avatarImageView)
         
         
-
+        
         self.fullNameLabel.snp.makeConstraints { (make) in
             make.leading.equalTo(self.avatarImageView.snp.trailing).offset(16)
             make.top.equalToSuperview().offset(35)
@@ -277,29 +165,29 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
             make.height.equalTo(100)
             make.width.equalTo(300)
         }
-
+        
         self.avatarImageView.snp.makeConstraints { (make) in
             make.leading.equalToSuperview().offset(16)
             make.top.equalToSuperview().offset(30)
             make.height.equalTo(130)
             make.width.equalTo(130)
         }
-
+        
         self.transparentView.snp.makeConstraints { (make) in
             make.leading.equalToSuperview().offset(16)
             make.top.equalToSuperview().offset(30)
             make.height.equalTo(130)
             make.width.equalTo(130)
         }
-
+        
         self.crossImage.snp.makeConstraints { (make) in
             make.trailing.equalToSuperview().offset(-25)
             make.top.equalToSuperview().offset(1)
             make.height.equalTo(50)
             make.width.equalTo(50)
         }
-
-
+        
+        
         self.setButtonSetStatus.snp.makeConstraints { (make) in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
@@ -307,7 +195,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
             make.height.equalTo(50)
             make.width.equalTo(360)
         }
-
+        
         self.statusTextField.snp.makeConstraints { (make) in
             make.leading.equalTo(self.avatarImageView.snp.trailing).offset(16)
             make.trailing.equalToSuperview().offset(-16)
@@ -315,56 +203,61 @@ class ProfileHeaderView: UITableViewHeaderFooterView, UITableViewDelegate{
             make.height.equalTo(42)
             make.width.equalTo(209)
         }
-
     }
-
-
     
-    
-    @objc private func didTapAnimationButton() {
+    @objc private func tapToAvatar(){
+        centerAvatar = avatarImageView.center
         
-        self.imageGestur.isEnabled = false
-        
-        let completion: () -> Void = { [weak self] in
-            self?.imageGestur.isEnabled = true
+        UIView.animateKeyframes(withDuration: 0.5, delay: 0) {
+            
+            self.transparentView.isHidden = false
+            self.transparentView.transform = CGAffineTransform(scaleX: 50.0, y: 50.0)
+            self.transparentView.alpha = 0.9
+            self.avatarImageView.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY - self.centerAvatar.y)
+            self.avatarImageView.transform = CGAffineTransform(scaleX: 2.5, y: 2.5)
+            self.avatarImageView.layer.cornerRadius = 0
+            self.avatarImageView.layer.borderWidth = 0
+            self.layoutIfNeeded()
+        } completion: { _ in
+            UIView.animate(withDuration: 0.3, delay: 0.0, animations: {
+                self.crossImage.alpha = 1
+                self.crossImage.isHidden = false
+                self.layoutIfNeeded()
+            })
         }
-        
-        self.transparentViewAnimation(completion: completion)
-        self.crossAnimation(completion: completion)
-        self.avatarAnimation(completion: completion)
-        
+        layoutIfNeeded()
     }
     
-    
-    @objc private func closeTapAnimationButton() {
+    @objc private func closeButtonTapped() {
         
-        self.crossGestur.isEnabled = false
-
-        let completion: () -> Void = { [weak self] in
-            self?.crossGestur.isEnabled = true
-        }
-
-        self.closeAvatar(completion: completion)
-        self.closeTransparent (completion: completion)
-        self.closeCrossAnimation (completion: completion)
         
+        UIView.animateKeyframes(withDuration: 0.5, delay: 0, animations: {
+            
+            self.transparentView.isHidden = true
+            self.avatarImageView.clipsToBounds = true
+            self.avatarImageView.layer.borderWidth = 5
+            self.avatarImageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            self.avatarImageView.layer.cornerRadius = 65
+            self.avatarImageView.center = self.centerAvatar
+            self.crossImage.alpha = 0
+            self.crossImage.isHidden = true
+        })
     }
-
+    
     @objc
     func buttonPressed() {
         print(statusTextT)
     }
-
+    
     @objc func statusTextChanged(_ textField: UITextField){
         statusTextT = textField.text ?? ""
     }
-
+    
 }
 
 public extension UIView {
-
     
     func addSubviews(_ subviews: UIView...) {
-          subviews.forEach { addSubview($0) }
-      }
+        subviews.forEach { addSubview($0) }
+    }
 }

@@ -11,16 +11,16 @@ class LoginViewController: UIViewController{
     
     private var coordinator: LoginCoordinator
     
+    var loginDelegate: LoginViewControllerDelegate?
+    
     init(coordinator: LoginCoordinator){
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
-    
+    @available (*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    var loginDelegate: LoginViewControllerDelegate?
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()

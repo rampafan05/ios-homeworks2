@@ -18,7 +18,7 @@ class Checker {
     
     func chek(_ login1: String, _ password1: String) -> Bool{
         guard login1 == self.login && password1 == self.password else { return false }
-            return true
+        return true
 
     }
 }

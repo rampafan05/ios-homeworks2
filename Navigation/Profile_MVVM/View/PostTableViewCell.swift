@@ -67,11 +67,11 @@ class PostTableViewCell: UITableViewCell {
         self.postImage.image = UIImage(named: post.image)
         guard let image = postImage.image else { return }
         
-//         Добавим наложение фильтра при помощи зависимости iOSIntPackage:
-        filter.processImage(sourceImage: image, filter: .transfer) { filterImage in
+        //         Добавим наложение фильтра при помощи зависимости iOSIntPackage:
+        filter.processImage(sourceImage: image, filter: .colorInvert) { filterImage in
             postImage.image = filterImage
         }
-
+        
         self.postLikesCounter.text = "Likes: \(post.likes)"
         self.postViewsCounter.text = "Views: \(post.views)"
     }

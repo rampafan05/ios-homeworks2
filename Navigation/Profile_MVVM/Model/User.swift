@@ -25,9 +25,8 @@ class User {
 }
 //MARK: PROTOCOL UserService
 protocol UserService {
-    
+
     func userService(login: String) -> User?
-    
 }
 
 class CurrentUserService: UserService {
@@ -37,7 +36,6 @@ class CurrentUserService: UserService {
     func userService(login: String) -> User? {
         guard login == user.login else { return nil }
         return self.user
-        
     }
     
 }
@@ -49,7 +47,6 @@ class TestUserService: UserService {
     func userService(login: String) -> User? {
         guard login == user.login else { return nil }
         return self.user
-        
     }
     
 }
